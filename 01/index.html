@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XV Años - Miriam Jireh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ====== SPLASH ====== -->
+  <div class="splash" id="splash">
+    <div class="splash-bg-bridgerton">
+      <img src="bridgerton-hero.jpg" alt="Bridgerton">
+    </div>
+    <!-- Marco dorado elegante -->
+    <div class="splash-frame">
+      <div class="sf-corner sf-tl"></div>
+      <div class="sf-corner sf-tr"></div>
+      <div class="sf-corner sf-bl"></div>
+      <div class="sf-corner sf-br"></div>
+      <div class="sf-line sf-top"></div>
+      <div class="sf-line sf-bottom"></div>
+      <div class="sf-line sf-left"></div>
+      <div class="sf-line sf-right"></div>
+    </div>
+    <!-- Coronas animadas -->
+    <div class="splash-crown crown-1">&#128081;</div>
+    <div class="splash-crown crown-2">&#128081;</div>
+    <div class="splash-crown crown-3">&#9818;</div>
+    <div class="splash-crown crown-4">&#128081;</div>
+
+    <!-- Sparkles animados -->
+    <div class="splash-sparkle sp-1">&#10022;</div>
+    <div class="splash-sparkle sp-2">&#10022;</div>
+    <div class="splash-sparkle sp-3">&#10022;</div>
+    <div class="splash-sparkle sp-4">&#10022;</div>
+    <div class="splash-sparkle sp-5">&#10022;</div>
+    <div class="splash-sparkle sp-6">&#10022;</div>
+    <div class="splash-sparkle sp-7">&#10022;</div>
+    <div class="splash-sparkle sp-8">&#10022;</div>
+    <div class="splash-sparkle sp-9">&#10048;</div>
+    <div class="splash-sparkle sp-10">&#10048;</div>
+
+    <!-- Líneas decorativas -->
+    <div class="splash-line line-1"></div>
+    <div class="splash-line line-2"></div>
+
+    <!-- Flores flotantes en splash -->
+    <div class="splash-flowers" id="splashFlowers"></div>
+
+    <div class="splash-bottom-deco">
+      <span class="sbd-flower">🌸</span>
+      <span class="sbd-line"></span>
+      <span class="sbd-text">Bridgerton</span>
+      <span class="sbd-line"></span>
+      <span class="sbd-flower">🌸</span>
+    </div>
+    <div class="splash-bridgerton-img">
+      <img src="bridgerton-hero.jpg" alt="Bridgerton">
+    </div>
+  </div>
+
+  <!-- ====== ENVELOPE (fuera del splash) ====== -->
+  <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="splash-xv-top wrapper-xv">
+      <span class="xv-deco-line"></span>
+      <span class="xv-text">XV</span>
+      <span class="xv-deco-line"></span>
+    </div>
+    <div class="splash-invite-text wrapper-invite">
+      <p>Estás cordialmente invitado</p>
+    </div>
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+      <div class="envelope-photo-out" id="envelopePhotoOut">
+        <img src="hero.jpg" alt="Miriam Jireh">
+      </div>
+      <div class="envelope-shimmer"></div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-seal">
+        <svg viewBox="0 0 100 100" class="wax-seal">
+          <defs>
+            <radialGradient id="waxGrad" cx="40%" cy="35%" r="55%">
+              <stop offset="0%" stop-color="#e8a0b4"/>
+              <stop offset="35%" stop-color="#c23a5a"/>
+              <stop offset="70%" stop-color="#8b1a3a"/>
+              <stop offset="100%" stop-color="#5a0f25"/>
+            </radialGradient>
+            <filter id="waxShadow">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
+              <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000" flood-opacity="0.3"/>
+            </filter>
+          </defs>
+          <path d="M50 2 C62 2, 70 5, 78 10 C86 15, 92 22, 95 32 C98 42, 97 50, 95 58 C93 66, 88 74, 82 80 C76 86, 68 92, 58 95 C48 98, 40 97, 32 95 C24 93, 16 87, 10 80 C4 73, 2 64, 2 54 C2 44, 4 36, 8 28 C12 20, 18 12, 26 7 C34 2, 42 2, 50 2 Z" fill="url(#waxGrad)" filter="url(#waxShadow)"/>
+          <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <path d="M50 28 L53 42 L67 42 L56 50 L59 64 L50 55 L41 64 L44 50 L33 42 L47 42 Z" fill="rgba(255,255,255,0.12)"/>
+          <text x="50" y="58" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="24" fill="rgba(255,255,255,0.85)">M</text>
+          <ellipse cx="38" cy="38" rx="12" ry="8" fill="rgba(255,255,255,0.12)" transform="rotate(-20, 38, 38)"/>
+        </svg>
+      </div>
+      <div class="envelope-letter">
+        <div class="letter-fold-top"></div>
+        <div class="letter-content">
+          <div class="letter-xv">XV</div>
+          <div class="letter-line"></div>
+          <div class="letter-name">Miriam Jireh</div>
+          <div class="letter-sub">te invita a celebrar sus XV años</div>
+        </div>
+        <div class="letter-fold-bottom"></div>
+      </div>
+      <div class="envelope-body"></div>
+      <div class="envelope-name">Miriam Jireh</div>
+    </div>
+    <div class="splash-text">
+      <h2>Abre tu invitación</h2>
+      <p>Toca el sello</p>
+    </div>
+  </div>
+
+  <!-- ====== FULLSCREEN PHOTO REVEAL ====== -->
+  <div class="photo-reveal" id="photoReveal">
+    <div class="photo-reveal-frame">
+      <img src="hero.jpg" alt="Miriam Jireh">
+    </div>
+    <div class="photo-reveal-name">Miriam Jireh</div>
+    <div class="photo-reveal-sub">Mis XV Años</div>
+  </div>
+
+  <!-- ====== FLOATING LETTERS ====== -->
+  <div class="floating-letters" id="floatingLetters"></div>
+
+  <!-- ====== PETALS ====== -->
+  <div class="particles" id="particles"></div>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-overlay">
+      <img src="bridgerton-hero.jpg" alt="Bridgerton">
+    </div>
+    <div class="hero-lace tl">&#10048;</div>
+    <div class="hero-lace tr">&#10048;</div>
+    <div class="hero-lace bl">&#10048;</div>
+    <div class="hero-lace br">&#10048;</div>
+    <div class="hero-ornament top"></div>
+
+    <div class="hero-content">
+      <div class="hero-crown">👑</div>
+      <div class="hero-frame reveal-scale" id="heroFrame">
+        <div class="hero-frame-inner">
+          <img src="hero.jpg" alt="Miriam Jireh">
+        </div>
+        <div class="hero-frame-flowers">
+          <span class="hff hff-tl">🌹</span>
+          <span class="hff hff-tr">🌸</span>
+          <span class="hff hff-bl">🌷</span>
+          <span class="hff hff-br">🌺</span>
+          <span class="hff hff-t">🏵️</span>
+          <span class="hff hff-b">💐</span>
+          <span class="hff hff-l">🌼</span>
+          <span class="hff hff-r">🪷</span>
+        </div>
+      </div>
+
+      <p class="hero-pretitle" id="heroPre">Mis</p>
+      <h1 class="hero-title" id="heroTitle">Quince Años</h1>
+      <p class="hero-subtitle" id="heroSub">Miriam Jireh</p>
+      <div class="hero-date-badge" id="heroBadge">22 de Agosto • 2026</div>
+    </div>
+
+    <div class="hero-ornament bottom"></div>
+    <div class="scroll-indicator">
+      <span>Desliza</span>
+      <div class="scroll-arrow"></div>
+    </div>
+    <div class="music-player" id="musicPlayer">
+      <button class="music-btn" id="musicBtn" type="button" aria-label="Reproducir música">
+        <span class="music-icon" id="musicIcon">▶</span>
+      </button>
+      <div class="music-info">
+        <span class="music-title">Indila - Love Story</span>
+        <div class="music-bar-wrap">
+          <div class="music-bar" id="musicBar"></div>
+        </div>
+      </div>
+    </div>
+    <audio id="bgMusic" loop preload="auto" playsinline webkit-playsinline></audio>
+  </section>
+
+  <!-- ====== INVITATION ====== -->
+  <section class="about">
+    <div class="section-frame">
+      <div class="frame-corner fc-tl">
+        <svg viewBox="0 0 120 120" fill="none"><path d="M10 110 C10 60 30 30 60 15 C40 25 20 50 15 90 Z" fill="currentColor" opacity="0.5"/><path d="M10 110 C15 80 25 55 45 35" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/><path d="M55 12 C58 6 62 4 65 8 C62 10 58 10 55 12Z" fill="currentColor" opacity="0.5"/><path d="M40 30 C44 24 48 22 52 26 C48 28 44 28 40 30Z" fill="currentColor" opacity="0.4"/></svg>
+      </div>
+      <div class="frame-corner fc-tr">
+        <svg viewBox="0 0 120 120" fill="none"><path d="M110 110 C110 60 90 30 60 15 C80 25 100 50 105 90 Z" fill="currentColor" opacity="0.5"/><path d="M110 110 C105 80 95 55 75 35" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/><path d="M65 12 C62 6 58 4 55 8 C58 10 62 10 65 12Z" fill="currentColor" opacity="0.5"/><path d="M80 30 C76 24 72 22 68 26 C72 28 76 28 80 30Z" fill="currentColor" opacity="0.4"/></svg>
+      </div>
+      <div class="frame-corner fc-bl">
+        <svg viewBox="0 0 120 120" fill="none"><path d="M10 10 C10 60 30 90 60 105 C40 95 20 70 15 30 Z" fill="currentColor" opacity="0.5"/><path d="M10 10 C15 40 25 65 45 85" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/><path d="M55 108 C58 114 62 116 65 112 C62 110 58 110 55 108Z" fill="currentColor" opacity="0.5"/><path d="M40 90 C44 96 48 98 52 94 C48 92 44 92 40 90Z" fill="currentColor" opacity="0.4"/></svg>
+      </div>
+      <div class="frame-corner fc-br">
+        <svg viewBox="0 0 120 120" fill="none"><path d="M110 10 C110 60 90 90 60 105 C80 95 100 70 105 30 Z" fill="currentColor" opacity="0.5"/><path d="M110 10 C105 40 95 65 75 85" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/><path d="M65 108 C62 114 58 116 55 112 C58 110 62 110 65 108Z" fill="currentColor" opacity="0.5"/><path d="M80 90 C76 96 72 98 68 94 C72 92 76 92 80 90Z" fill="currentColor" opacity="0.4"/></svg>
+      </div>
+      <div class="frame-border frame-top"></div>
+      <div class="frame-border frame-bottom"></div>
+      <div class="frame-border frame-left"></div>
+      <div class="frame-border frame-right"></div>
+      <div class="frame-center">
+        <div class="frame-flower ff-top">❀</div>
+        <div class="frame-flower ff-bottom">❀</div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="about-photo reveal-scale">
+        <img src="invitation.jpg" alt="Miriam Jireh">
+        <div class="photo-flowers">
+          <span class="pf pf-tl">🌹</span>
+          <span class="pf pf-tr">🌸</span>
+          <span class="pf pf-bl">🌷</span>
+          <span class="pf pf-br">🌺</span>
+          <span class="pf pf-t">🏵️</span>
+          <span class="pf pf-b">💐</span>
+        </div>
+      </div>
+      <span class="about-icon reveal">🌸</span>
+      <h2 class="section-title reveal">Invitación</h2>
+      <div class="section-divider reveal"></div>
+      <p class="about-text reveal">
+        Con gran alegría y con la bendición de Dios,
+        <strong>mis papás</strong> te invitan a celebrar
+        el día más importante de mi vida,
+        mis <strong>XV Años</strong>.
+      </p>
+      <div class="about-bridgerton-img reveal-scale">
+        <img src="bridgerton-invitation.png" alt="Bridgerton">
+      </div>
+      <div class="parents-card reveal">
+        <p class="parents-label">Con orgullo sus padres</p>
+        <p class="parents-names">Joanne Katherine Pareja Abastos & Abel Isminio Ordóñez</p>
+      </div>
+
+      <div class="parents-card reveal" style="margin-top:25px">
+        <p class="parents-label">Madrina y Padrino</p>
+        <p class="parents-names">Geuster Sly Sanchez Abastos & Helene del Pilar Olaya Requena</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DETAILS ====== -->
+  <section class="details">
+    <div class="section-frame">
+      <div class="frame-corner fc-tl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 110 C10 60 30 30 60 15 C40 25 20 50 15 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-tr"><svg viewBox="0 0 120 120" fill="none"><path d="M110 110 C110 60 90 30 60 15 C80 25 100 50 105 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-bl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 10 C10 60 30 90 60 105 C40 95 20 70 15 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-br"><svg viewBox="0 0 120 120" fill="none"><path d="M110 10 C110 60 90 90 60 105 C80 95 100 70 105 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-border frame-top"></div>
+      <div class="frame-border frame-bottom"></div>
+      <div class="frame-border frame-left"></div>
+      <div class="frame-border frame-right"></div>
+      <div class="frame-center"><div class="frame-flower ff-top">❀</div><div class="frame-flower ff-bottom">❀</div></div>
+    </div>
+    <h2 class="section-title reveal">Detalles del Evento</h2>
+    <div class="section-divider reveal"></div>
+    <div class="details-grid">
+      <div class="detail-card calendar-card reveal-left">
+        <div class="calendar">
+          <div class="calendar-header">Agosto 2026</div>
+          <div class="calendar-days">
+            <span class="cal-day-name">Lu</span><span class="cal-day-name">Ma</span><span class="cal-day-name">Mi</span><span class="cal-day-name">Ju</span><span class="cal-day-name">Vi</span><span class="cal-day-name">Sa</span><span class="cal-day-name">Do</span>
+            <span class="cal-day"> </span><span class="cal-day"> </span><span class="cal-day"> </span><span class="cal-day"> </span><span class="cal-day"> </span><span class="cal-day"> </span><span class="cal-day">1</span>
+            <span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day">7</span><span class="cal-day">8</span>
+            <span class="cal-day">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day">14</span><span class="cal-day">15</span>
+            <span class="cal-day">16</span><span class="cal-day">17</span><span class="cal-day">18</span><span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day">21</span><span class="cal-day cal-day-active">22</span>
+            <span class="cal-day">23</span><span class="cal-day">24</span><span class="cal-day">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day">28</span><span class="cal-day">29</span>
+            <span class="cal-day">30</span><span class="cal-day">31</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card reveal">
+        <div class="detail-photo"><img src="detail-time.jpg" alt="Hora"></div>
+        <span class="detail-icon">🕐</span>
+        <p class="detail-label">Hora</p>
+        <p class="detail-value detail-time-big">7:00 P.M.</p>
+        <p class="detail-sub">Recepción de Invitados</p>
+      </div>
+      <div class="detail-card reveal-right">
+        <div class="detail-photo"><img src="detail-place.jpg" alt="Lugar"></div>
+        <span class="detail-icon">🏛️</span>
+        <p class="detail-label">Lugar</p>
+        <p class="detail-value">Casa Real<br>Laureles</p>
+      </div>
+    </div>
+    <div class="details-extra">
+      <div class="detail-card reveal">
+        <div class="detail-photo"><img src="detail-time.jpg" alt="Música"></div>
+        <span class="detail-icon">🎶</span>
+        <p class="detail-label">Música & Baile</p>
+        <p class="detail-value">Música en vivo y pista de baile</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DRESS CODE ====== -->
+  <section class="dresscode-section">
+    <div class="section-frame">
+      <div class="frame-corner fc-tl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 110 C10 60 30 30 60 15 C40 25 20 50 15 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-tr"><svg viewBox="0 0 120 120" fill="none"><path d="M110 110 C110 60 90 30 60 15 C80 25 100 50 105 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-bl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 10 C10 60 30 90 60 105 C40 95 20 70 15 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-br"><svg viewBox="0 0 120 120" fill="none"><path d="M110 10 C110 60 90 90 60 105 C80 95 100 70 105 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-border frame-top"></div>
+      <div class="frame-border frame-bottom"></div>
+      <div class="frame-border frame-left"></div>
+      <div class="frame-border frame-right"></div>
+      <div class="frame-center"><div class="frame-flower ff-top">❀</div><div class="frame-flower ff-bottom">❀</div></div>
+    </div>
+
+    <div class="dresscode-sil dresscode-sil-left">
+      <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="22" r="14" fill="currentColor" opacity="0.45"/>
+        <ellipse cx="60" cy="14" rx="16" ry="6" fill="currentColor" opacity="0.35"/>
+        <path d="M44 14 C44 8 52 4 60 4 C68 4 76 8 76 14" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+        <path d="M56 36 L60 50 L64 36" fill="currentColor" opacity="0.4"/>
+        <line x1="60" y1="36" x2="60" y2="52" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+        <path d="M38 52 C46 48 54 46 60 46 C66 46 74 48 82 52 L78 68 C72 64 66 62 60 62 C54 62 48 64 42 68 Z" fill="currentColor" opacity="0.42"/>
+        <path d="M60 46 L56 62" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
+        <path d="M60 46 L64 62" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
+        <path d="M46 54 C50 52 56 50 60 50 C64 50 70 52 74 54 L72 72 C68 68 64 66 60 66 C56 66 52 68 48 72 Z" fill="currentColor" opacity="0.3"/>
+        <path d="M42 72 C40 100 38 130 36 165 L52 165 C54 130 56 100 58 72 Z" fill="currentColor" opacity="0.38"/>
+        <path d="M62 72 C64 100 66 130 68 165 L84 165 C82 130 80 100 78 72 Z" fill="currentColor" opacity="0.38"/>
+        <ellipse cx="44" cy="168" rx="10" ry="5" fill="currentColor" opacity="0.35"/>
+        <ellipse cx="76" cy="168" rx="10" ry="5" fill="currentColor" opacity="0.35"/>
+        <path d="M38 52 C28 60 22 72 20 90" stroke="currentColor" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
+        <path d="M82 52 C92 60 98 72 100 90" stroke="currentColor" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="dresscode-sil dresscode-sil-right">
+      <svg viewBox="0 0 140 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="70" cy="28" rx="16" ry="20" fill="currentColor" opacity="0.45"/>
+        <ellipse cx="70" cy="12" rx="11" ry="11" fill="currentColor" opacity="0.4"/>
+        <path d="M60 10 L62 4 L64 8 L66 2 L68 7 L70 1 L72 7 L74 2 L76 8 L78 4 L80 10" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4"/>
+        <circle cx="64" cy="10" r="1.2" fill="currentColor" opacity="0.5"/>
+        <circle cx="70" cy="8" r="1.2" fill="currentColor" opacity="0.5"/>
+        <circle cx="76" cy="10" r="1.2" fill="currentColor" opacity="0.5"/>
+        <path d="M64 46 C64 50 64 54 64 58 L76 58 C76 54 76 50 76 46" fill="currentColor" opacity="0.4"/>
+        <circle cx="66" cy="52" r="1" fill="currentColor" opacity="0.5"/>
+        <circle cx="70" cy="51" r="1" fill="currentColor" opacity="0.5"/>
+        <circle cx="74" cy="52" r="1" fill="currentColor" opacity="0.5"/>
+        <path d="M44 62 C50 58 58 56 70 56 C82 56 90 58 96 62 L96 68 C90 66 82 64 70 64 C58 64 50 66 44 68 Z" fill="currentColor" opacity="0.42"/>
+        <path d="M44 68 C34 74 26 84 22 100" stroke="currentColor" stroke-width="3" fill="none" opacity="0.35" stroke-linecap="round"/>
+        <path d="M96 68 C106 74 114 84 118 100" stroke="currentColor" stroke-width="3" fill="none" opacity="0.35" stroke-linecap="round"/>
+        <path d="M70 64 C54 64 38 78 30 98 C22 118 18 145 16 170 C14 195 12 215 10 235 L130 235 C128 215 126 195 124 170 C122 145 118 118 110 98 C102 78 86 64 70 64 Z" fill="currentColor" opacity="0.4"/>
+        <path d="M34 130 C46 124 58 120 70 120 C82 120 94 124 106 130" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.2"/>
+        <path d="M28 170 C42 164 56 160 70 160 C84 160 98 164 112 170" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.2"/>
+        <path d="M22 210 C38 204 54 200 70 200 C86 200 102 204 118 210" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.2"/>
+        <path d="M10 235 C24 231 46 229 70 229 C94 229 116 231 130 235" stroke="currentColor" stroke-width="1.2" fill="none" opacity="0.25"/>
+      </svg>
+    </div>
+
+    <div class="dresscode-content">
+      <h2 class="section-title reveal">Dress Code</h2>
+      <div class="section-divider reveal"></div>
+      <div class="dresscode-type reveal">Sports Elegante</div>
+      <div class="dresscode-divider reveal"></div>
+      <div class="dresscode-grid reveal">
+        <div class="dresscode-item">
+          <div class="dresscode-item-img"><img src="dresscode-men.png" alt="Varones con terno"></div>
+          <p class="dresscode-item-text">Varones con terno</p>
+        </div>
+        <div class="dresscode-separator">✦</div>
+        <div class="dresscode-item">
+          <div class="dresscode-item-img"><img src="dresscode-women.png" alt="Mujeres con vestido"></div>
+          <p class="dresscode-item-text">Mujeres con vestido</p>
+        </div>
+      </div>
+      <div class="dresscode-note reveal">
+        <p>Se reserva la paleta de color rosa cuarzo para la quinceañera</p>
+        <div class="color-palette">
+          <div class="color-swatch" style="background: #f5dcd8;" title="Rosa Cuarzo Muy Claro"></div>
+          <div class="color-swatch" style="background: #f0c4c0;" title="Rosa Cuarzo Claro"></div>
+          <div class="color-swatch" style="background: #e8b0ac;" title="Rosa Cuarzo Medio"></div>
+          <div class="color-swatch" style="background: #d4968f;" title="Rosa Cuarzo Oscuro"></div>
+        </div>
+      </div>
+      <div class="dresscode-deco reveal">
+        <span>❀</span>
+        <span>🌹</span>
+        <span>❀</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ITINERARIO ====== -->
+  <section class="itinerary">
+    <div class="section-frame">
+      <div class="frame-corner fc-tl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 110 C10 60 30 30 60 15 C40 25 20 50 15 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-tr"><svg viewBox="0 0 120 120" fill="none"><path d="M110 110 C110 60 90 30 60 15 C80 25 100 50 105 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-bl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 10 C10 60 30 90 60 105 C40 95 20 70 15 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-br"><svg viewBox="0 0 120 120" fill="none"><path d="M110 10 C110 60 90 90 60 105 C80 95 100 70 105 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-border frame-top"></div>
+      <div class="frame-border frame-bottom"></div>
+      <div class="frame-border frame-left"></div>
+      <div class="frame-border frame-right"></div>
+      <div class="frame-center"><div class="frame-flower ff-top">❀</div><div class="frame-flower ff-bottom">❀</div></div>
+    </div>
+    <h2 class="section-title reveal">Itinerario</h2>
+    <div class="section-divider reveal"></div>
+    <div class="itinerary-timeline">
+      <div class="itinerary-line"></div>
+      <div class="itinerary-item itinerary-left reveal-left">
+        <div class="itinerary-content">
+          <div class="itinerary-card">
+            <div class="itinerary-photo"><img src="ico-castle.png" alt="Recepción"></div>
+            <div class="itinerary-info">
+              <div class="itinerary-time">7:00 P.M.</div>
+              <div class="itinerary-desc">Recepción de Invitados</div>
+            </div>
+          </div>
+        </div>
+        <div class="itinerary-dot"></div>
+        <div class="itinerary-branch"></div>
+      </div>
+      <div class="itinerary-item itinerary-right reveal-right">
+        <div class="itinerary-dot"></div>
+        <div class="itinerary-branch"></div>
+        <div class="itinerary-content">
+          <div class="itinerary-card">
+            <div class="itinerary-photo"><img src="ico-bell.png" alt="Ceremonia"></div>
+            <div class="itinerary-info">
+              <div class="itinerary-time">8:00 P.M.</div>
+              <div class="itinerary-desc">Inicio de Ceremonia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="itinerary-item itinerary-left reveal-left">
+        <div class="itinerary-content">
+          <div class="itinerary-card">
+            <div class="itinerary-photo"><img src="ico-princess.png" alt="Quinceañera"></div>
+            <div class="itinerary-info">
+              <div class="itinerary-time">8:30 P.M.</div>
+              <div class="itinerary-desc">Entrada de la Quinceañera</div>
+            </div>
+          </div>
+        </div>
+        <div class="itinerary-dot"></div>
+        <div class="itinerary-branch"></div>
+      </div>
+      <div class="itinerary-item itinerary-right reveal-right">
+        <div class="itinerary-dot"></div>
+        <div class="itinerary-branch"></div>
+        <div class="itinerary-content">
+          <div class="itinerary-card">
+            <div class="itinerary-photo"><img src="ico-waltz.png" alt="Vals"></div>
+            <div class="itinerary-info">
+              <div class="itinerary-time">9:00 P.M.</div>
+              <div class="itinerary-desc">Vals</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="itinerary-item itinerary-left reveal-left">
+        <div class="itinerary-content">
+          <div class="itinerary-card">
+            <div class="itinerary-photo"><img src="ico-dinner.png" alt="Cena"></div>
+            <div class="itinerary-info">
+              <div class="itinerary-time">9:30 P.M.</div>
+              <div class="itinerary-desc">Brindis y Cena</div>
+            </div>
+          </div>
+        </div>
+        <div class="itinerary-dot"></div>
+        <div class="itinerary-branch"></div>
+      </div>
+      <div class="itinerary-item itinerary-right reveal-right">
+        <div class="itinerary-dot"></div>
+        <div class="itinerary-branch"></div>
+        <div class="itinerary-content">
+          <div class="itinerary-card">
+            <div class="itinerary-photo"><img src="ico-party.png" alt="Fiesta"></div>
+            <div class="itinerary-info">
+              <div class="itinerary-time">10:00 P.M.</div>
+              <div class="itinerary-desc">Inicio de la Fiesta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="itinerary-item itinerary-left reveal-left">
+        <div class="itinerary-content">
+          <div class="itinerary-card">
+            <div class="itinerary-photo"><img src="ico-confetti.png" alt="Hora Loca"></div>
+            <div class="itinerary-info">
+              <div class="itinerary-time">11:00 P.M.</div>
+              <div class="itinerary-desc">Hora Loca</div>
+            </div>
+          </div>
+        </div>
+        <div class="itinerary-dot"></div>
+        <div class="itinerary-branch"></div>
+      </div>
+      <div class="itinerary-item itinerary-right reveal-right">
+        <div class="itinerary-dot itinerary-dot-end"></div>
+        <div class="itinerary-branch"></div>
+        <div class="itinerary-content">
+          <div class="itinerary-card">
+            <div class="itinerary-photo"><img src="ico-moon.png" alt="Fin"></div>
+            <div class="itinerary-info">
+              <div class="itinerary-time">3:00 A.M.</div>
+              <div class="itinerary-desc">Fin de la Fiesta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== COUNTDOWN ====== -->
+  <section class="countdown-section">
+    <div class="section-frame">
+      <div class="frame-corner fc-tl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 110 C10 60 30 30 60 15 C40 25 20 50 15 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-tr"><svg viewBox="0 0 120 120" fill="none"><path d="M110 110 C110 60 90 30 60 15 C80 25 100 50 105 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-bl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 10 C10 60 30 90 60 105 C40 95 20 70 15 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-br"><svg viewBox="0 0 120 120" fill="none"><path d="M110 10 C110 60 90 90 60 105 C80 95 100 70 105 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-border frame-top"></div>
+      <div class="frame-border frame-bottom"></div>
+      <div class="frame-border frame-left"></div>
+      <div class="frame-border frame-right"></div>
+      <div class="frame-center"><div class="frame-flower ff-top">❀</div><div class="frame-flower ff-bottom">❀</div></div>
+    </div>
+    <h2 class="section-title reveal">Cuenta Regresiva</h2>
+    <div class="section-divider reveal"></div>
+    <div class="countdown reveal" id="countdown">
+      <div class="countdown-item">
+        <div class="countdown-number" id="cd-days">00</div>
+        <span class="countdown-label">Días</span>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="cd-hours">00</div>
+        <span class="countdown-label">Horas</span>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="cd-mins">00</div>
+        <span class="countdown-label">Minutos</span>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="cd-secs">00</div>
+        <span class="countdown-label">Segundos</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ====== MOMENTOS ====== -->
+  <section class="gallery">
+    <div class="section-frame">
+      <div class="frame-corner fc-tl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 110 C10 60 30 30 60 15 C40 25 20 50 15 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-tr"><svg viewBox="0 0 120 120" fill="none"><path d="M110 110 C110 60 90 30 60 15 C80 25 100 50 105 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-bl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 10 C10 60 30 90 60 105 C40 95 20 70 15 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-br"><svg viewBox="0 0 120 120" fill="none"><path d="M110 10 C110 60 90 90 60 105 C80 95 100 70 105 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-border frame-top"></div>
+      <div class="frame-border frame-bottom"></div>
+      <div class="frame-border frame-left"></div>
+      <div class="frame-border frame-right"></div>
+      <div class="frame-center"><div class="frame-flower ff-top">❀</div><div class="frame-flower ff-bottom">❀</div></div>
+    </div>
+
+    <!-- Decoraciones flotantes -->
+    <div class="gallery-deco gallery-deco-1">&#127800;</div>
+    <div class="gallery-deco gallery-deco-2">&#128150;</div>
+    <div class="gallery-deco gallery-deco-3">&#127800;</div>
+    <div class="gallery-deco gallery-deco-4">&#128150;</div>
+    <div class="gallery-deco gallery-deco-5">&#10048;</div>
+    <div class="gallery-deco gallery-deco-6">&#127800;</div>
+    <div class="gallery-deco gallery-deco-7">&#128150;</div>
+    <div class="gallery-deco gallery-deco-8">&#10048;</div>
+
+    <h2 class="section-title reveal">Momentos</h2>
+    <div class="section-divider reveal"></div>
+    <p class="gallery-subtitle reveal">Los recuerdos más bonitos de mi celebración</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-stagger" style="--i:0"><img src="momento-1.jpg" alt="Momento 1"></div>
+      <div class="gallery-item gallery-stagger" style="--i:1"><img src="momento-3.jpg" alt="Momento 3"></div>
+      <div class="gallery-item g-panoramic gallery-stagger" style="--i:2"><img src="momento-2.jpg" alt="Momento 2"></div>
+      <div class="gallery-item gallery-stagger" style="--i:3"><img src="momento-4.jpg" alt="Momento 4"></div>
+      <div class="gallery-item gallery-stagger" style="--i:4"><img src="momento-5.jpg" alt="Momento 5"></div>
+      <div class="gallery-item gallery-stagger" style="--i:5"><img src="momento-6.jpg" alt="Momento 6"></div>
+      <div class="gallery-item gallery-stagger" style="--i:6"><img src="momento-7.jpg" alt="Momento 7"></div>
+      <div class="gallery-item gallery-stagger" style="--i:7"><img src="momento-8.jpg" alt="Momento 8"></div>
+      <div class="gallery-item gallery-stagger" style="--i:8"><img src="momento-9.jpg" alt="Momento 9"></div>
+    </div>
+
+    <div class="gallery-deco-bottom reveal">
+      <span>&#127800;</span>
+      <span>&#10048;</span>
+      <span>&#128150;</span>
+      <span>&#10048;</span>
+      <span>&#127800;</span>
+    </div>
+  </section>
+
+  <!-- ====== MAP ====== -->
+  <section class="map-section">
+    <div class="section-frame">
+      <div class="frame-corner fc-tl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 110 C10 60 30 30 60 15 C40 25 20 50 15 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-tr"><svg viewBox="0 0 120 120" fill="none"><path d="M110 110 C110 60 90 30 60 15 C80 25 100 50 105 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-bl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 10 C10 60 30 90 60 105 C40 95 20 70 15 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-br"><svg viewBox="0 0 120 120" fill="none"><path d="M110 10 C110 60 90 90 60 105 C80 95 100 70 105 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-border frame-top"></div>
+      <div class="frame-border frame-bottom"></div>
+      <div class="frame-border frame-left"></div>
+      <div class="frame-border frame-right"></div>
+      <div class="frame-center"><div class="frame-flower ff-top">❀</div><div class="frame-flower ff-bottom">❀</div></div>
+    </div>
+    <h2 class="section-title reveal">Ubicación</h2>
+    <div class="section-divider reveal"></div>
+    <div class="map-container reveal-scale">
+      <div class="map-placeholder">
+        <div class="map-name">
+          <p>Casa Real</p>
+          <small>Laureles</small>
+        </div>
+      </div>
+    </div>
+    <a href="https://maps.app.goo.gl/QBPRHiFSfm1h3drS8" target="_blank" class="btn-map reveal">
+      <span class="btn-icon">📍</span> Cómo llegar
+    </a>
+  </section>
+
+  <!-- ====== RSVP ====== -->
+  <section class="rsvp" id="rsvp">
+    <div class="section-frame">
+      <div class="frame-corner fc-tl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 110 C10 60 30 30 60 15 C40 25 20 50 15 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-tr"><svg viewBox="0 0 120 120" fill="none"><path d="M110 110 C110 60 90 30 60 15 C80 25 100 50 105 90 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="15" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="35" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-bl"><svg viewBox="0 0 120 120" fill="none"><path d="M10 10 C10 60 30 90 60 105 C40 95 20 70 15 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="45" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="30" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-corner fc-br"><svg viewBox="0 0 120 120" fill="none"><path d="M110 10 C110 60 90 90 60 105 C80 95 100 70 105 30 Z" fill="currentColor" opacity="0.5"/><circle cx="60" cy="105" r="5" fill="currentColor" opacity="0.6"/><circle cx="75" cy="85" r="3" fill="currentColor" opacity="0.5"/><circle cx="90" cy="60" r="3.5" fill="currentColor" opacity="0.45"/></svg></div>
+      <div class="frame-border frame-top"></div>
+      <div class="frame-border frame-bottom"></div>
+      <div class="frame-border frame-left"></div>
+      <div class="frame-border frame-right"></div>
+      <div class="frame-center"><div class="frame-flower ff-top">❀</div><div class="frame-flower ff-bottom">❀</div></div>
+    </div>
+    <h2 class="section-title reveal">Confirmar Asistencia</h2>
+    <div class="section-divider reveal"></div>
+    <div class="rsvp-card reveal-scale">
+      <div class="rsvp-photo">
+        <img src="rsvp.jpg" alt="Miriam Jireh">
+      </div>
+      <p class="rsvp-intro">Será un honor contar contigo en este día tan especial.</p>
+      <span class="pass-badge">Pase válido para 2 personas</span>
+      <form class="rsvp-form" id="rsvpForm" onsubmit="return false;">
+        <input type="text" id="guestName" placeholder="Tu nombre completo" required>
+        <input type="text" id="guestCompanion" placeholder="Nombre de tu acompañante (opcional)">
+        <button type="button" class="btn-whatsapp" onclick="sendWhatsApp()">
+          <span class="wa-icon">💬</span> Confirmar por WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer" style="background-image: url('footer.jpg')">
+    <div class="footer-hearts">♥ ♥ ♥</div>
+    <p class="footer-text">Miriam Jireh • XV Años</p>
+    <p class="footer-sub">22 de Agosto 2026</p>
+    <p class="footer-bridgerton">A Regency Affair</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
