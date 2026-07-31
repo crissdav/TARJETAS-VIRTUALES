@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XV Años — Vianca Gabriela | A las doce campanadas</title>
+<meta name="description" content="Invitación digital de XV años, tema Cenicienta">
+
+  <!--
+  DATOS:
+  Quinceañera: Vianca Gabriela · 21-Ago-2026 7pm · Castello
+  Padres: Juan Carlos Moreno Núñez & Mercedes Melani Alarcón Morales
+  -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ POLVO MÁGICO (partículas) ============ -->
+<div class="magic-dust" id="magicDust" aria-hidden="true"></div>
+
+<!-- ============ LLUVIA DE PALABRAS ============ -->
+<div class="word-rain" id="wordRain" aria-hidden="true"></div>
+
+<!-- ============ SPLASH ============ -->
+<div class="splash" id="splash">
+  <div class="splash-stars" id="splashStars" aria-hidden="true"></div>
+
+  <img src="cinderella_2.png" alt="" class="splash-cinderella" aria-hidden="true">
+
+  <svg class="splash-castle" viewBox="0 0 200 175" fill="none" aria-hidden="true">
+    <rect x="25" y="85" width="150" height="88" fill="#1B3A6B" rx="4"/>
+    <rect x="75" y="22" width="50" height="63" fill="#1B3A6B" rx="4"/>
+    <rect x="15" y="52" width="30" height="33" fill="#1B3A6B" rx="4"/>
+    <rect x="155" y="52" width="30" height="33" fill="#1B3A6B" rx="4"/>
+    <polygon points="75,22 100,2 125,22" fill="#1B3A6B"/>
+    <polygon points="15,52 30,30 45,52" fill="#1B3A6B"/>
+    <polygon points="155,52 170,30 185,52" fill="#1B3A6B"/>
+    <rect x="14" y="49" width="4" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+    <rect x="182" y="49" width="4" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+    <rect x="14" y="85" width="4" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+    <rect x="182" y="85" width="4" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+    <path d="M85 173V148a15 15 0 0 1 30 0v25Z" fill="#0B1E3D"/>
+    <rect x="84" y="150" width="32" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+    <path d="M80 38 A6 6 0 0 1 86 32 L114 32 A6 6 0 0 1 120 38 L120 48 L80 48 Z" fill="#0B1E3D"/>
+    <rect x="84" y="36" width="12" height="12" fill="#C9D6E8" opacity=".6" rx="2"/>
+    <rect x="104" y="36" width="12" height="12" fill="#C9D6E8" opacity=".6" rx="2"/>
+    <path d="M24 68 A4 4 0 0 1 28 64 L32 64 A4 4 0 0 1 36 68 L36 76 L24 76 Z" fill="#0B1E3D"/>
+    <rect x="26" y="67" width="8" height="8" fill="#C9D6E8" opacity=".5" rx="2"/>
+    <path d="M164 68 A4 4 0 0 1 168 64 L172 64 A4 4 0 0 1 176 68 L176 76 L164 76 Z" fill="#0B1E3D"/>
+    <rect x="166" y="67" width="8" height="8" fill="#C9D6E8" opacity=".5" rx="2"/>
+    <rect x="38" y="90" width="20" height="10" fill="#0B1E3D" rx="3"/>
+    <rect x="65" y="90" width="18" height="10" fill="#0B1E3D" rx="3"/>
+    <rect x="117" y="90" width="18" height="10" fill="#0B1E3D" rx="3"/>
+    <rect x="142" y="90" width="20" height="10" fill="#0B1E3D" rx="3"/>
+    <circle cx="40" cy="70" r="3" fill="#B0D4E8" opacity=".8"/>
+    <circle cx="60" cy="50" r="2" fill="#C9D6E8" opacity=".7"/>
+    <circle cx="160" cy="70" r="3" fill="#B0D4E8" opacity=".8"/>
+    <circle cx="140" cy="50" r="2" fill="#C9D6E8" opacity=".7"/>
+    <circle cx="100" cy="12" r="4" fill="#B0D4E8" opacity=".9"/>
+    <circle cx="75" cy="6" r="2.5" fill="#C9D6E8" opacity=".7"/>
+    <circle cx="125" cy="6" r="2.5" fill="#C9D6E8" opacity=".7"/>
+  </svg>
+
+  <div class="splash-content">
+    <span class="splash-eyebrow">Faltan pocas horas para</span>
+    <h1 class="splash-title">XV</h1>
+    <p class="splash-name">Vianca Gabriela</p>
+    <p class="splash-tagline">"Hasta en los sueños más imposibles, la magia encuentra su hora."</p>
+
+    <button class="btn-open" id="btnOpenSplash" type="button">Abrir invitación</button>
+    <p class="splash-clock-hint">Toca para comenzar el cuento</p>
+  </div>
+</div>
+
+<!-- ============ SOBRE ============ -->
+<div class="envelope-wrapper" id="envelopeWrapper">
+  <div>
+    <div class="envelope" id="envelope">
+      <div class="envelope-letter">
+        <div class="letter-content">
+          <div class="letter-xv">XV AÑOS</div>
+          <div class="letter-line"></div>
+          <div class="letter-name">Vianca Gabriela</div>
+          <div class="letter-sub">te invita a vivir su cuento de hadas</div>
+        </div>
+      </div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-seal">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <linearGradient id="slipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#C9D6E8" stop-opacity=".95"/>
+              <stop offset="50%" stop-color="#E8F0F8" stop-opacity=".85"/>
+              <stop offset="100%" stop-color="#B0D4E8" stop-opacity=".9"/>
+            </linearGradient>
+          </defs>
+          <path d="M50 95 L30 80 C22 74 20 64 24 56 L38 30 C42 22 50 18 58 20 L68 22 C76 24 82 32 80 40 L78 48 C76 52 74 56 74 60 L88 94 C90 98 86 104 82 104 L56 104 C52 104 48 100 50 95 Z"
+                fill="url(#slipGrad)" stroke="#7EC8E3" stroke-width="1.2" opacity=".9"/>
+          <path d="M74 60 C74 60 70 50 66 46 L62 44" stroke="#7EC8E3" stroke-width="2" fill="none" opacity=".6"/>
+          <path d="M50 95 C50 95 44 84 44 78" stroke="#7EC8E3" stroke-width="1.5" fill="none" opacity=".5"/>
+          <ellipse cx="52" cy="92" rx="18" ry="4" fill="#7EC8E3" opacity=".15" transform="rotate(-10 52 92)"/>
+        </svg>
+      </div>
+      <div class="envelope-body"></div>
+    </div>
+    <p class="envelope-hint">Toca el sello de cristal para abrir</p>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-layout">
+    <div class="hero-content">
+      <svg class="hero-castle" viewBox="0 0 200 175" fill="none" aria-hidden="true">
+        <rect x="25" y="85" width="150" height="88" fill="#1B3A6B" rx="4"/>
+        <rect x="75" y="22" width="50" height="63" fill="#1B3A6B" rx="4"/>
+        <rect x="15" y="52" width="30" height="33" fill="#1B3A6B" rx="4"/>
+        <rect x="155" y="52" width="30" height="33" fill="#1B3A6B" rx="4"/>
+        <polygon points="75,22 100,2 125,22" fill="#1B3A6B"/>
+        <polygon points="15,52 30,30 45,52" fill="#1B3A6B"/>
+        <polygon points="155,52 170,30 185,52" fill="#1B3A6B"/>
+        <rect x="14" y="49" width="4" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+        <rect x="182" y="49" width="4" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+        <rect x="14" y="85" width="4" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+        <rect x="182" y="85" width="4" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+        <path d="M85 173V148a15 15 0 0 1 30 0v25Z" fill="#0B1E3D"/>
+        <rect x="84" y="150" width="32" height="6" fill="#C9D6E8" opacity=".5" rx="2"/>
+        <path d="M80 38 A6 6 0 0 1 86 32 L114 32 A6 6 0 0 1 120 38 L120 48 L80 48 Z" fill="#0B1E3D"/>
+        <rect x="84" y="36" width="12" height="12" fill="#C9D6E8" opacity=".6" rx="2"/>
+        <rect x="104" y="36" width="12" height="12" fill="#C9D6E8" opacity=".6" rx="2"/>
+        <path d="M24 68 A4 4 0 0 1 28 64 L32 64 A4 4 0 0 1 36 68 L36 76 L24 76 Z" fill="#0B1E3D"/>
+        <rect x="26" y="67" width="8" height="8" fill="#C9D6E8" opacity=".5" rx="2"/>
+        <path d="M164 68 A4 4 0 0 1 168 64 L172 64 A4 4 0 0 1 176 68 L176 76 L164 76 Z" fill="#0B1E3D"/>
+        <rect x="166" y="67" width="8" height="8" fill="#C9D6E8" opacity=".5" rx="2"/>
+        <rect x="38" y="90" width="20" height="10" fill="#0B1E3D" rx="3"/>
+        <rect x="65" y="90" width="18" height="10" fill="#0B1E3D" rx="3"/>
+        <rect x="117" y="90" width="18" height="10" fill="#0B1E3D" rx="3"/>
+        <rect x="142" y="90" width="20" height="10" fill="#0B1E3D" rx="3"/>
+        <circle cx="40" cy="70" r="3" fill="#B0D4E8" opacity=".8"/>
+        <circle cx="60" cy="50" r="2" fill="#C9D6E8" opacity=".7"/>
+        <circle cx="160" cy="70" r="3" fill="#B0D4E8" opacity=".8"/>
+        <circle cx="140" cy="50" r="2" fill="#C9D6E8" opacity=".7"/>
+        <circle cx="100" cy="12" r="4" fill="#B0D4E8" opacity=".9"/>
+        <circle cx="75" cy="6" r="2.5" fill="#C9D6E8" opacity=".7"/>
+        <circle cx="125" cy="6" r="2.5" fill="#C9D6E8" opacity=".7"/>
+      </svg>
+
+      <span class="hero-eyebrow">Mis quince años</span>
+      <h2 class="hero-name">Vianca Gabriela</h2>
+      <p class="hero-xv"><span class="xv-star">✦</span> A LAS DOCE CAMPANADAS <span class="xv-star">✦</span></p>
+
+      <p class="hero-quote">"Ni siquiera puedo decirte cuánto he soñado con esta noche. Ven a celebrarla conmigo, como en el cuento más bonito."</p>
+
+      <div class="hero-date-card">
+        <div class="hd-day">Viernes 21 de Agosto</div>
+        <div class="hd-sub">7:00 p.m. · Castello</div>
+      </div>
+
+      <div class="hero-parents glass">
+        <span>Invitan</span>
+        <div class="parents-list">
+          <p class="parent-name">Juan Carlos Moreno Núñez</p>
+          <p class="parent-conj">y</p>
+          <p class="parent-name">Mercedes Melani Alarcón Morales</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img src="cinderella_8.png" alt="" class="hero-cinderella-bg" aria-hidden="true">
+      <img src="cinderella_9.png" alt="" class="hero-cinderella-main" aria-hidden="true">
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><span></span>Desliza</div>
+</section>
+
+<!-- ============ COUNTDOWN ============ -->
+<section class="countdown-section" id="countdown">
+  <img src="cinderella_1.png" alt="" class="cd-cinderella" aria-hidden="true">
+  <div class="container">
+    <span class="eyebrow reveal">El reloj mágico</span>
+    <h2 class="section-title reveal">Cuenta regresiva</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="pocket-watch reveal-scale">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#C9D6E8" stroke-width="3"/>
+        <circle cx="100" cy="100" r="78" fill="rgba(255,255,255,0.05)" stroke="#B0D4E8" stroke-width="1"/>
+        <circle cx="100" cy="14" r="6" fill="#7EC8E3"/>
+        <g stroke="#B0D4E8" stroke-width="2" stroke-linecap="round">
+          <line x1="100" y1="26" x2="100" y2="34"/>
+          <line x1="174" y1="100" x2="166" y2="100"/>
+          <line x1="100" y1="174" x2="100" y2="166"/>
+          <line x1="26" y1="100" x2="34" y2="100"/>
+        </g>
+        <line id="watchHourHand" x1="100" y1="100" x2="100" y2="60" stroke="#1B3A6B" stroke-width="4" stroke-linecap="round"/>
+        <line id="watchMinHand" x1="100" y1="100" x2="135" y2="100" stroke="#0B1E3D" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="4" fill="#C9D6E8"/>
+      </svg>
+    </div>
+
+    <div class="countdown-grid reveal">
+      <div class="cd-item" id="cdDaysWrap"><div class="cd-number" id="cdDays">00</div><span class="cd-label">Días</span></div>
+      <div class="cd-item" id="cdHoursWrap"><div class="cd-number" id="cdHours">00</div><span class="cd-label">Horas</span></div>
+      <div class="cd-item" id="cdMinsWrap"><div class="cd-number" id="cdMins">00</div><span class="cd-label">Min</span></div>
+      <div class="cd-item" id="cdSecsWrap"><div class="cd-number" id="cdSecs">00</div><span class="cd-label">Seg</span></div>
+    </div>
+
+    <p class="countdown-note reveal">🎃 Faltan para que la carroza se convierta en calabaza… ✨</p>
+  </div>
+</section>
+
+<!-- ============ CALENDARIO ============ -->
+<section class="cal-section" id="calendario">
+  <img src="cinderella_6.png" alt="" class="cal-cinderella" aria-hidden="true">
+  <div class="container">
+    <span class="eyebrow reveal">La fecha mágica</span>
+    <h2 class="section-title reveal">Agosto 2026</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="cal-card reveal-scale">
+      <div class="cal-header">
+        <span class="cal-month">Agosto</span>
+        <span class="cal-year">2026</span>
+      </div>
+      <div class="cal-weekdays">
+        <span>Dom</span><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span>
+      </div>
+      <div class="cal-days">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span>1</span><span>2</span>
+        <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
+        <span>17</span><span>18</span><span>19</span><span>20</span><span class="cal-highlight">21</span><span>22</span><span>23</span>
+        <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+        <span>31</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVENTOS — CEREMONIA Y RECEPCIÓN ============ -->
+<section class="events-section" id="eventos">
+  <img src="cinderella_4.png" alt="" class="events-cinderella" aria-hidden="true">
+  <img src="cinderella_3.png" alt="" class="events-cinderella-2" aria-hidden="true">
+  <div class="container">
+    <span class="eyebrow reveal">La celebración</span>
+    <h2 class="section-title reveal">Ceremonia y Recepción</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="events-grid events-grid-single">
+      <div class="event-card reveal-scale">
+        <img src="star.png" alt="" class="event-icon" aria-hidden="true">
+        <h3>Ceremonia y Recepción</h3>
+        <p class="event-time">7:00 p.m.</p>
+        <p class="event-place">Castello</p>
+        <p class="event-addr">Castello — Ingresa la dirección</p>
+        <a href="#" target="_blank" rel="noopener" class="btn-event">
+          Ver en Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORIA / CITA ============ -->
+<section class="story">
+  <img src="cinderella_7.png" alt="" class="story-cinderella" aria-hidden="true">
+  <div class="container">
+    <p class="story-quote reveal">Érase una vez una niña que soñaba en silencio, hasta que un día decidió que su historia también merecía un baile, un vestido y una noche mágica para recordar toda la vida.</p>
+    <p class="story-signature reveal">Vianca Gabriela</p>
+  </div>
+</section>
+
+<!-- ============ GALERÍA — MOMENTOS ============ -->
+<section class="gallery">
+  <div class="container">
+    <span class="eyebrow reveal">Recuerdos</span>
+    <h2 class="section-title reveal">Momentos</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-sub reveal">Los instantes que fueron escribiendo este cuento</p>
+
+    <div class="gallery-grid">
+      <!-- Reemplaza cada photo-placeholder por: <img src="tu-foto.jpg" alt="..."> -->
+      <div class="gallery-item g-tall reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#B0D4E8,#7EC8E3)"><span class="ph-icon">👸</span><span class="ph-label">Tu foto aquí</span></div></div>
+      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#C9D6E8,#B0D4E8)"><span class="ph-icon">✨</span><span class="ph-label">Tu foto aquí</span></div></div>
+      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#1B3A6B,#0B1E3D)"><span class="ph-icon">👑</span><span class="ph-label">Tu foto aquí</span></div></div>
+      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#7EC8E3,#C9D6E8)"><span class="ph-icon">🩰</span><span class="ph-label">Tu foto aquí</span></div></div>
+      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#0B1E3D,#1B3A6B)"><span class="ph-icon">🌙</span><span class="ph-label">Tu foto aquí</span></div></div>
+      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#B0D4E8,#C9D6E8)"><span class="ph-icon">💫</span><span class="ph-label">Tu foto aquí</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DRESSCODE ============ -->
+<section class="dresscode">
+  <img src="cinderella_5.png" alt="" class="dress-cinderella" aria-hidden="true">
+  <div class="container">
+    <span class="eyebrow reveal">Código de vestimenta</span>
+    <h2 class="section-title reveal">Dresscode</h2>
+    <div class="section-divider reveal"></div>
+    <p class="section-sub reveal">Elegante — tonos azul real, plata y blanco. Como en el baile del palacio.</p>
+
+    <div class="dresscode-grid">
+      <div class="dc-card reveal">
+        <div class="dc-icon-wrap">
+          <img src="dress.png" alt="" class="dc-icon dc-icon-dress" aria-hidden="true">
+        </div>
+        <h3>Damas</h3>
+        <p>Vestido largo o midi en tonos azul real, celeste, plata o blanco</p>
+      </div>
+      <div class="dc-card reveal">
+        <div class="dc-icon-wrap">
+          <img src="suit.png" alt="" class="dc-icon dc-icon-suit" aria-hidden="true">
+        </div>
+        <h3>Caballeros</h3>
+        <p>Terno formal azul marino o negro, camisa clara y corbata elegante</p>
+      </div>
+    </div>
+
+    <p class="dc-quote reveal">«No importa cómo sufra tu corazón: si sigues creyendo, el sueño que deseas se hará realidad.»<span>— Cenicienta</span></p>
+
+    <div class="dc-palette reveal" aria-hidden="true">
+      <span class="dc-swatch" style="background:#0B1E3D" title="Azul Marino"></span>
+      <span class="dc-swatch" style="background:#1B3A6B" title="Azul Real"></span>
+      <span class="dc-swatch" style="background:#B0D4E8" title="Celeste"></span>
+      <span class="dc-swatch" style="background:#C9D6E8" title="Plata"></span>
+      <span class="dc-swatch" style="background:#FFFFFF" title="Blanco"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RSVP ============ -->
+<section class="rsvp" id="rsvp">
+  <div class="container">
+    <span class="eyebrow reveal">Confirma tu asistencia</span>
+    <h2 class="section-title reveal">WhatsApp</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="rsvp-card reveal-scale">
+      <img src="slipper.png" alt="" class="rsvp-slipper" aria-hidden="true">
+      <p class="rsvp-intro">Será un honor contar contigo en la noche en que mi cuento cobra vida.</p>
+      <span class="pass-badge">Pase válido para 2 personas</span>
+
+      <form class="rsvp-form" id="rsvpForm" onsubmit="return false;">
+        <input type="text" id="guestName" placeholder="Tu nombre completo" required>
+        <input type="text" id="guestCompanion" placeholder="Nombre de tu acompañante (opcional)">
+        <button type="button" class="btn-whatsapp" id="btnWhatsapp">
+          Confirmar por WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <img src="crown.png" alt="" class="footer-slipper" aria-hidden="true">
+  <p class="footer-name">Vianca Gabriela</p>
+  <p class="footer-sub">XV AÑOS · 21 de Agosto</p>
+  <p class="footer-credit">A las doce campanadas, la magia comienza</p>
+</footer>
+
+<!-- Botón de música — coloca un archivo .mp3 en esta carpeta -->
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Reproducir música">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect class="mt-bar" x="5" y="9" width="2.5" height="6" rx="1" fill="currentColor"/>
+    <rect class="mt-bar" x="10.75" y="6" width="2.5" height="12" rx="1" fill="currentColor"/>
+    <rect class="mt-bar" x="16.5" y="10.5" width="2.5" height="4" rx="1" fill="currentColor"/>
+  </svg>
+</button>
+<audio id="bgMusic" loop preload="auto">
+  <source src="La Valse de LAmour.mp3" type="audio/mpeg">
+</audio>
+
+<div class="smoke-overlay" id="smokeOverlay" aria-hidden="true"></div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
