@@ -20,7 +20,7 @@
   --white:          #FFFFFF;
   --text:           #EAF3FC;
   --text-light:     #D9E8FA;
-  --text-muted:     #C2D6EF;
+  --text-muted:     #D7E7F9;
   --shadow:         rgba(5,12,38,0.35);
   --shadow-strong:  rgba(5,12,38,0.6);
   --glass-border:   rgba(230,195,107,0.45);
@@ -74,7 +74,7 @@ img{ max-width: 100%; display:block; }
    ========================================================= */
 .eyebrow{
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: clamp(16px,1.33vw,17px);
   letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--gold-soft);
@@ -85,7 +85,7 @@ img{ max-width: 100%; display:block; }
 
 .section-title{
   font-family: var(--font-display);
-  font-size: clamp(34px, 6vw, 52px);
+  font-size: clamp(39px, 6vw,60px);
   text-align: center;
   color: var(--gold);
   letter-spacing: 2px;
@@ -106,14 +106,14 @@ img{ max-width: 100%; display:block; }
   transform: translate(-50%,-50%);
   color: var(--gold);
   background: var(--celeste-bg);
-  font-size: 14px;
+  font-size: clamp(15px,1.25vw,16px);
   padding: 0 10px;
   filter: drop-shadow(0 0 5px rgba(210,169,79,.55));
 }
 
 .section-sub{
   text-align:center;
-  font-size: 23px;
+  font-size: clamp(24px,2.03vw,26px);
   color: var(--text-light);
   font-style: italic;
   max-width: 540px;
@@ -282,7 +282,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 
 .splash-eyebrow{
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: clamp(15px,1.25vw,16px);
   letter-spacing: 6px;
   color: var(--gold-soft);
   text-transform: uppercase;
@@ -290,14 +290,14 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .splash-title{
   font-family: var(--font-script);
-  font-size: clamp(64px, 16vw, 104px);
+  font-size: clamp(74px, 16vw,120px);
   color: var(--gold);
   line-height: 1;
   text-shadow: 0 0 30px rgba(230,195,107,.5);
 }
 .splash-name{
   font-family: var(--font-display);
-  font-size: clamp(26px, 6vw, 36px);
+  font-size: clamp(30px, 6vw,41px);
   letter-spacing: 3px;
   margin-top: 6px;
   color: var(--silver-bright);
@@ -305,7 +305,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .splash-tagline{
   font-style: italic;
   color: var(--text-light);
-  font-size: 19px;
+  font-size: clamp(20px,1.72vw,22px);
   margin-top: 14px;
   max-width: 340px;
 }
@@ -313,7 +313,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .btn-open{
   margin-top: 40px;
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: clamp(16px,1.33vw,17px);
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--navy);
@@ -334,7 +334,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 
 .splash-clock-hint{
   margin-top: 16px;
-  font-size: 15px;
+  font-size: clamp(16px,1.33vw,17px);
   color: var(--text-light);
   letter-spacing: 1px;
   opacity: .9;
@@ -407,7 +407,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   top:-11px; left:50%;
   transform: translateX(-50%);
   color: rgba(255,255,255,.9);
-  font-size: 16px;
+  font-size: clamp(17px,1.4vw,18px);
   text-shadow: 0 0 8px rgba(255,255,255,.8);
 }
 .door-handle{
@@ -450,7 +450,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .envelope.is-open .envelope-letter{ opacity:1; transform: translateY(0) scale(1); }
 
 .letter-crown{
-  width: 72px;
+  width: min(13vw, 72px);
   height: auto;
   margin: 0 auto 6px;
   filter: drop-shadow(0 2px 6px rgba(230,195,107,.55));
@@ -460,24 +460,25 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 
 .letter-content .letter-xv{
   font-family: var(--font-display);
-  font-size: 44px;
+  font-size: clamp(24px, 8vw, 51px);
   letter-spacing: 4px;
-  color: var(--gold);
-  background: linear-gradient(100deg, var(--gold) 20%, var(--gold-soft) 40%, #fff8e0 50%, var(--gold-soft) 60%, var(--gold) 80%);
+  color: #B8860B;
+  background: linear-gradient(100deg, #B8860B 20%, #D9B44A 40%, #F6E7B6 50%, #D9B44A 60%, #B8860B 80%);
   background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: var(--gold);
+  color: #B8860B;
+  text-shadow: 0 1px 0 rgba(10,22,51,.4), 0 2px 8px rgba(10,22,51,.28);
   animation: goldShimmer 4s ease-in-out infinite;
 }
 .letter-content .letter-line{
-  width: 56px; height:1px; background: var(--gold-soft);
+  width: min(10vw, 56px); height:1px; background: var(--gold-soft);
   margin: 8px auto;
 }
 .letter-content .letter-name{
   font-family: var(--font-script);
-  font-size: 62px;
+  font-size: clamp(30px, 12vw, 68px);
   color: var(--navy);
   margin-top: -8px;
   animation: letterNameGlow 3.5s ease-in-out infinite;
@@ -496,7 +497,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   margin-top: 16px;
   text-align:center;
   color: var(--text-light);
-  font-size: 15px;
+  font-size: clamp(16px,1.33vw,17px);
   letter-spacing: 1px;
   font-style: italic;
 }
@@ -701,7 +702,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .hero-eyebrow{
   font-family: var(--font-display);
   letter-spacing: 6px;
-  font-size: 16px;
+  font-size: clamp(17px,1.4vw,18px);
   text-transform: uppercase;
   color: var(--gold-soft);
   margin-bottom: 10px;
@@ -710,7 +711,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 
 .hero-name{
   font-family: var(--font-script);
-  font-size: clamp(84px, 20vw, 160px);
+  font-size: clamp(97px, 20vw,184px);
   color: var(--gold);
   line-height: .85;
   text-shadow: 0 4px 30px rgba(230,195,107,.5);
@@ -719,7 +720,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 
 .hero-xv{
   font-family: var(--font-display);
-  font-size: clamp(19px, 4vw, 26px);
+  font-size: clamp(22px, 4vw,30px);
   letter-spacing: 10px;
   color: var(--text-light);
   margin-top: 12px;
@@ -727,7 +728,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .xv-star{
   color: var(--gold-soft);
-  font-size: 16px;
+  font-size: clamp(17px,1.4vw,18px);
   letter-spacing: 0;
   opacity:.7;
 }
@@ -736,7 +737,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   max-width: 500px;
   margin: 26px auto 0;
   font-style: italic;
-  font-size: 23px;
+  font-size: clamp(24px,2.03vw,26px);
   color: var(--text-light);
   line-height: 1.8;
 }
@@ -753,12 +754,12 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .hero-date-card .hd-day{
   font-family: var(--font-display);
-  font-size: clamp(26px, 5vw, 34px);
+  font-size: clamp(30px, 5vw,39px);
   letter-spacing: 2px;
   color: var(--gold);
 }
 .hero-date-card .hd-sub{
-  font-size: 17px;
+  font-size: clamp(18px,1.56vw,20px);
   color: var(--text-light);
   margin-top: 4px;
 }
@@ -780,7 +781,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .hero-parents span{
   display:block;
   font-family: var(--font-display);
-  font-size: 12px;
+  font-size: clamp(13px,1.09vw,14px);
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -794,12 +795,12 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .hero-parents .parent-name{
   font-family: var(--font-script);
-  font-size: 23px;
+  font-size: clamp(24px,2.03vw,26px);
   color: var(--silver-bright);
   line-height: 1.2;
 }
 .hero-parents .parent-conj{
-  font-size: 13px;
+  font-size: clamp(14px,1.17vw,15px);
   color: var(--text-muted);
   font-style: italic;
   line-height: 1;
@@ -809,7 +810,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   position:absolute;
   bottom: 28px; left:50%;
   transform: translateX(-50%);
-  font-size: 13px;
+  font-size: clamp(14px,1.17vw,15px);
   letter-spacing: 3px;
   color: var(--text-muted);
   display:flex; flex-direction:column; align-items:center; gap:8px;
@@ -899,7 +900,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .cd-number{
   font-family: var(--font-display);
-  font-size: clamp(34px, 6vw, 46px);
+  font-size: clamp(39px, 6vw,53px);
   color: var(--silver-bright);
   background: rgba(10,22,51,0.6);
   backdrop-filter: blur(8px);
@@ -914,7 +915,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .cd-item.tick .cd-number{ transform: scale(1.06); box-shadow: 0 6px 24px var(--shadow-strong); }
 .cd-label{
   margin-top: 8px;
-  font-size: 13px;
+  font-size: clamp(14px,1.17vw,15px);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-light);
@@ -925,7 +926,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   margin-top: 24px;
   font-style: italic;
   color: var(--text-light);
-  font-size: 17px;
+  font-size: clamp(18px,1.56vw,20px);
 }
 
 /* =========================================================
@@ -981,13 +982,13 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .cal-month{
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: clamp(28px,2.34vw,30px);
   color: var(--gold);
   letter-spacing: 2px;
 }
 .cal-year{
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: clamp(19px,1.64vw,21px);
   color: var(--text-muted);
   letter-spacing: 1px;
 }
@@ -1000,7 +1001,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .cal-weekdays span{
   font-family: var(--font-display);
-  font-size: 12px;
+  font-size: clamp(13px,1.09vw,14px);
   text-transform:uppercase;
   color: var(--text-muted);
   letter-spacing: .5px;
@@ -1013,7 +1014,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   gap: 4px;
 }
 .cal-days span{
-  font-size: 20px;
+  font-size: clamp(21px,1.79vw,23px);
   color: var(--text);
   padding: 7px 0;
   border-radius: 50%;
@@ -1036,7 +1037,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   position:absolute;
   top: -10px;
   right: -8px;
-  font-size: 12px;
+  font-size: clamp(13px,1.09vw,14px);
   color: var(--gold-soft);
   animation: slipperPop 2s ease-in-out infinite;
 }
@@ -1097,28 +1098,27 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   max-width: 640px;
   margin: 0 auto;
   font-family: var(--font-body);
-  font-size: clamp(24px, 4vw, 32px);
+  font-size: clamp(28px, 4vw,37px);
   line-height: 2;
-  color: var(--gold);
+  color: var(--navy);
   font-style: italic;
   font-weight: 600;
-  text-shadow: 0 0 22px rgba(230,195,107,.4);
   position:relative;
   padding: 0 24px;
 }
 .story-quote::before, .story-quote::after{
   content:"❝";
   font-family: Georgia, serif;
-  color: var(--silver-bright);
-  font-size: 48px;
+  color: var(--navy-mid);
+  font-size: clamp(44px,4.29vw,55px);
   display:block;
-  opacity:.6;
+  opacity:.5;
 }
 .story-quote::after{ content:"❞"; }
 .story-signature{
   font-family: var(--font-script);
-  font-size: 42px;
-  color: var(--gold);
+  font-size: clamp(38px,3.74vw,48px);
+  color: var(--navy);
   margin-top: 22px;
 }
 
@@ -1166,13 +1166,15 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   border-radius: 8px;
   pointer-events:none;
 }
-.ph-icon{ font-size: 34px; opacity:.7; }
+.ph-icon{ font-size: clamp(31px,3.04vw,39px); opacity:.85; }
 .ph-label{
-  font-size: 12px;
+  font-size: clamp(13px,1.09vw,14px);
   letter-spacing: 1.5px;
   text-transform:uppercase;
-  opacity:.75;
+  opacity:.95;
   font-family: var(--font-body);
+  color: var(--silver-bright);
+  text-shadow: 0 1px 3px rgba(10,22,51,.65), 0 0 2px rgba(10,22,51,.5);
 }
 
 /* =========================================================
@@ -1265,14 +1267,14 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .dc-icon-suit{ height: 165px; width: auto; }
 .dc-card h3{
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: clamp(23px,1.95vw,25px);
   letter-spacing: 3px;
   color: var(--gold);
   text-transform: uppercase;
   margin-bottom: 10px;
 }
 .dc-card p{
-  font-size: 18px;
+  font-size: clamp(19px,1.64vw,21px);
   color: var(--text-light);
   line-height: 1.55;
   max-width: 220px;
@@ -1284,7 +1286,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   text-align:center;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 22px;
+  font-size: clamp(23px,1.95vw,25px);
   line-height: 1.7;
   color: var(--silver-bright);
   position:relative;
@@ -1295,14 +1297,14 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   top:-16px; left:50%;
   transform: translateX(-50%);
   color: var(--gold);
-  font-size: 18px;
+  font-size: clamp(19px,1.64vw,21px);
   animation: dcSparkle 2.5s ease-in-out infinite;
 }
 .dc-quote span{
   display:block;
   margin-top:10px;
   font-style:normal;
-  font-size:16px;
+  font-size: clamp(17px,1.4vw,18px);
   letter-spacing:3px;
   text-transform:uppercase;
   color: var(--gold);
@@ -1327,7 +1329,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .dc-palette-label{
   margin-top: 18px;
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: clamp(16px,1.33vw,17px);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--silver-bright);
@@ -1335,7 +1337,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .dc-legend{
   margin-top: 10px;
-  font-size: 17px;
+  font-size: clamp(18px,1.56vw,20px);
   font-style: italic;
   color: var(--text-light);
   letter-spacing: 1px;
@@ -1390,29 +1392,39 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .event-card h3{
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: clamp(20px,1.72vw,22px);
   letter-spacing: 3px;
   color: var(--gold);
   text-transform: uppercase;
   margin-bottom: 12px;
 }
 .event-card .event-time{
-  font-size: 26px;
+  font-size: clamp(28px,2.34vw,30px);
   font-weight: 600;
   color: var(--gold);
   font-family: var(--font-display);
   letter-spacing: 1px;
 }
 .event-card .event-place{
-  font-size: 18px;
+  font-size: clamp(19px,1.64vw,21px);
   color: var(--text);
   margin-top: 6px;
   font-weight: 500;
 }
 .event-card .event-addr{
-  font-size: 16px;
-  color: var(--text-muted);
+  font-size: clamp(17px,1.4vw,18px);
+  color: var(--text-light);
   margin-top: 4px;
+}
+.event-venue-img{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid rgba(230,195,107,.4);
+  border-radius: var(--radius);
+  margin-top: 16px;
+  display: block;
+  filter: drop-shadow(0 4px 12px var(--shadow));
 }
 .btn-event{
   display:inline-flex;
@@ -1420,7 +1432,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   gap:8px;
   margin-top: 18px;
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: clamp(15px,1.25vw,16px);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--navy);
@@ -1484,7 +1496,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .rsvp-intro{
   color: var(--text-light);
-  font-size: 19px;
+  font-size: clamp(20px,1.72vw,22px);
   font-style: italic;
   margin-bottom: 8px;
   line-height: 1.6;
@@ -1492,7 +1504,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .pass-badge{
   display:inline-block;
   margin: 10px 0 22px;
-  font-size: 13px;
+  font-size: clamp(14px,1.17vw,15px);
   letter-spacing: 1px;
   color: var(--silver-bright);
   border: 1px solid rgba(230,195,107,.5);
@@ -1506,11 +1518,11 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   border: 1px solid rgba(230,195,107,.35);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: clamp(18px,1.56vw,20px);
   padding: 14px 16px;
   border-radius: var(--radius);
 }
-.rsvp-form input::placeholder{ color: var(--text-muted); opacity:.8; }
+.rsvp-form input::placeholder{ color: var(--text-muted); opacity:.95; }
 .rsvp-form input:focus{ border-color: var(--gold); outline:none; }
 
 .btn-whatsapp{
@@ -1520,7 +1532,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   color: var(--navy);
   border: 1px solid rgba(255,255,255,.45);
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: clamp(16px,1.33vw,17px);
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 15px 0;
@@ -1550,19 +1562,19 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .footer-name{
   font-family: var(--font-script);
-  font-size: 36px;
+  font-size: clamp(33px,3.2vw,41px);
   color: var(--gold);
 }
 .footer-sub{
-  font-size: 16px;
+  font-size: clamp(17px,1.4vw,18px);
   color: var(--text-light);
   letter-spacing: 1px;
   margin-top: 4px;
 }
 .footer-credit{
   margin-top: 26px;
-  font-size: 12px;
-  color: var(--text-muted);
+  font-size: clamp(13px,1.09vw,14px);
+  color: var(--text-light);
   letter-spacing: .5px;
 }
 
@@ -1602,7 +1614,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   color: var(--navy);
   padding: 14px 24px;
   border-radius: 30px;
-  font-size: 16px;
+  font-size: clamp(17px,1.4vw,18px);
   z-index: 200;
   opacity:0;
   pointer-events:none;
@@ -1639,18 +1651,18 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 
 .smoke-particle{
   position:absolute;
-  bottom:0;
   width: 60px;
   height: 60px;
   border-radius:50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.95), rgba(200,220,240,0.7), transparent);
-  filter: blur(14px);
+  background: radial-gradient(circle, var(--smoke-a, rgba(255,255,255,0.95)), var(--smoke-b, rgba(200,220,240,0.7)), transparent);
   opacity:0;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
 @keyframes smokeRise{
   0%{
-    transform: translateY(0) scale(0.3);
+    transform: translate(0,0) scale(0.3);
     opacity:0;
   }
   8%{
@@ -1660,7 +1672,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
     opacity:0.95;
   }
   100%{
-    transform: translateY(-120vh) scale(5);
+    transform: translate(var(--tx,0px), var(--ty,-120vh)) scale(var(--sc,5));
     opacity:0;
   }
 }
@@ -1669,9 +1681,11 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   position:absolute;
   border-radius:50%;
   background: radial-gradient(circle, #FFD700, #FFC107, transparent);
-  box-shadow: 0 0 10px #FFD700, 0 0 20px rgba(255,215,0,.5);
+  box-shadow: 0 0 8px rgba(255,215,0,.6);
   opacity:0;
   pointer-events:none;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 @keyframes sparklePop{
   0%{
@@ -1689,6 +1703,12 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
     transform: translate(var(--sx,80px),var(--sy,-140px)) scale(0.2);
     opacity:0;
   }
+}
+
+/* Rendimiento en móviles: menos carga de pintado para que todo fluya */
+@media (max-width: 600px){
+  .sparkle{ box-shadow: none; }
+  .dust, .word{ will-change: transform; }
 }
 
 /* =========================================================
@@ -1781,24 +1801,65 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 @media (max-width: 420px){
   section{ padding: 60px 0; }
   .countdown-grid{ gap: 8px; }
-  .cd-number{ font-size: 26px; padding: 10px 0; border-radius: 30px; }
-  .cd-label{ font-size: 11px; }
+  .cd-number{ font-size: clamp(28px,2.34vw,30px); padding: 10px 0; border-radius: 30px; }
+  .cd-label{ font-size: clamp(12px,1.01vw,13px); }
   .event-card{ padding: 24px 16px; }
   .hero-date-card{ padding: 16px 20px; }
   .hero-parents{ padding: 12px 16px; }
-  .hero-parents .parent-name{ font-size: 19px; }
+  .hero-parents .parent-name{ font-size: clamp(20px,1.72vw,22px); }
   .hero{ padding: 32px 16px; }
-  .hero-name{ font-size: clamp(62px, 15vw, 74px); }
-  .hero-quote{ font-size: 19px; }
-  .story-quote{ font-size: 21px; line-height: 1.8; }
+  .hero-name{ font-size: clamp(71px, 15vw,85px); }
+  .hero-quote{ font-size: clamp(20px,1.72vw,22px); }
+  .story-quote{ font-size: clamp(22px,1.87vw,24px); line-height: 1.8; }
   .cal-card{ padding: 20px 18px; }
-  .cal-month{ font-size: 20px; }
-  .cal-days span{ font-size: 17px; padding: 5px 0; }
+  .cal-month{ font-size: clamp(21px,1.79vw,23px); }
+  .cal-days span{ font-size: clamp(18px,1.56vw,20px); padding: 5px 0; }
   .dc-icon-wrap{ height: 140px; }
   .dc-icon-dress{ height: 128px; }
   .dc-icon-suit{ height: 128px; }
   .dc-icon-wrap::before{ width: 120px; height: 120px; }
-  .dc-card h3{ font-size: 18px; }
-  .dc-card p{ font-size: 16px; }
-  .dc-quote{ font-size: 19px; }
+  .dc-card h3{ font-size: clamp(19px,1.64vw,21px); }
+  .dc-card p{ font-size: clamp(17px,1.4vw,18px); }
+  .dc-quote{ font-size: clamp(20px,1.72vw,22px); }
+}
+
+/* =========================================================
+   Contraste sobre fondos claros
+   ========================================================= */
+.countdown-section .eyebrow,
+.gallery .eyebrow,
+.rsvp .eyebrow{ color: #8A6412; }
+
+.countdown-section .section-title,
+.gallery .section-title,
+.rsvp .section-title{ color: #7A570F; text-shadow: none; }
+
+.countdown-section .section-sub,
+.gallery .section-sub{ color: var(--navy); }
+
+.dresscode .dc-legend{ color: var(--navy); }
+
+.footer .footer-sub,
+.footer .footer-credit{ color: var(--navy); }
+
+/* =========================================================
+   RSVP — etiquetas de campos visibles
+   ========================================================= */
+.rsvp-field{
+  display:flex; flex-direction:column; gap:6px;
+  width:100%; text-align:left;
+}
+.rsvp-field-label{
+  font-family: var(--font-display);
+  font-size: clamp(15px,1.48vw,19px);
+  letter-spacing: 1.5px;
+  color: var(--silver-bright);
+}
+.rsvp-field-label .req{ color: var(--gold-soft); margin-left: 2px; }
+.rsvp-field-label .opt{
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: .85em;
+  letter-spacing: 0;
 }

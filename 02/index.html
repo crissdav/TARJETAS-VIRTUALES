@@ -8,7 +8,7 @@
 
   <!--
   DATOS:
-  Quinceañera: Vianca Gabriela · 21-Ago-2026 7pm · Castello
+  Quinceañera: Vianca Gabriela · 21-Ago-2026 7pm · Castelo Real
   Padres: Juan Carlos Moreno Núñez & Mercedes Melani Alarcón Morales
   -->
 
@@ -169,7 +169,7 @@
 
       <div class="hero-date-card">
         <div class="hd-day">Viernes 21 de Agosto</div>
-        <div class="hd-sub">7:00 p.m. · Castello</div>
+        <div class="hd-sub">7:00 p.m. · Castelo Real</div>
       </div>
 
       <div class="hero-parents glass">
@@ -270,9 +270,10 @@
         <img src="star.png" alt="" class="event-icon" aria-hidden="true">
         <h3>Ceremonia y Recepción</h3>
         <p class="event-time">7:00 p.m.</p>
-        <p class="event-place">Castello</p>
-        <p class="event-addr">Castello — Ingresa la dirección</p>
-        <a href="#" target="_blank" rel="noopener" class="btn-event">
+        <p class="event-place">Castelo Real</p>
+        <p class="event-addr">Huánuco, Perú</p>
+        <img src="venue.jpg" alt="Castelo Real — Salón de eventos" class="event-venue-img">
+        <a href="https://maps.app.goo.gl/PEtd9zMWERAybh7i8" target="_blank" rel="noopener" class="btn-event">
           Ver en Google Maps
         </a>
       </div>
@@ -363,8 +364,14 @@
       <span class="pass-badge">Pase válido para 2 personas</span>
 
       <form class="rsvp-form" id="rsvpForm" onsubmit="return false;">
-        <input type="text" id="guestName" placeholder="Tu nombre completo" required>
-        <input type="text" id="guestCompanion" placeholder="Nombre de tu acompañante (opcional)">
+        <label class="rsvp-field" for="guestName">
+          <span class="rsvp-field-label">Tu nombre completo <b class="req">*</b></span>
+          <input type="text" id="guestName" placeholder="Escribe aquí tu nombre" required>
+        </label>
+        <label class="rsvp-field" for="guestCompanion">
+          <span class="rsvp-field-label">Nombre de tu acompañante <span class="opt">(opcional)</span></span>
+          <input type="text" id="guestCompanion" placeholder="Escribe aquí el nombre">
+        </label>
         <button type="button" class="btn-whatsapp" id="btnWhatsapp">
           Confirmar por WhatsApp
         </button>

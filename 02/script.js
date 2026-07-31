@@ -145,22 +145,55 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!overlay) return;
     overlay.innerHTML = '';
 
-    // Humo
-    const smokeCount = 28;
+    // Humo de colores (blanco, celeste, azul) que surge de distintos lados
+    const isMobile = window.innerWidth < 600;
+    const smokeCount = isMobile ? 16 : 36;
+    const SMOKE_COLORS = [
+      ['rgba(255,255,255,0.95)', 'rgba(200,220,240,0.7)'],
+      ['rgba(214,229,245,0.95)', 'rgba(191,212,236,0.7)'],
+      ['rgba(169,208,239,0.92)', 'rgba(124,182,228,0.65)'],
+      ['rgba(43,78,168,0.88)', 'rgba(21,44,102,0.6)']
+    ];
+    const SIDES = ['bottom', 'left', 'right', 'top'];
     for (let i = 0; i < smokeCount; i++) {
       const p = document.createElement('div');
       p.className = 'smoke-particle';
-      const size = 70 + Math.random() * 140;
+      const size = isMobile ? 50 + Math.random() * 80 : 70 + Math.random() * 140;
       p.style.width = `${size}px`;
       p.style.height = `${size}px`;
-      p.style.left = `${(i / smokeCount) * 100 + Math.random() * 8 - 4}%`;
+      const side = SIDES[Math.floor(Math.random() * SIDES.length)];
+      const colors = SMOKE_COLORS[Math.floor(Math.random() * SMOKE_COLORS.length)];
+      p.style.setProperty('--smoke-a', colors[0]);
+      p.style.setProperty('--smoke-b', colors[1]);
+      p.style.setProperty('--sc', `${3 + Math.random() * 3}`);
+      if (side === 'bottom') {
+        p.style.bottom = '0';
+        p.style.left = `${(i / smokeCount) * 100 + Math.random() * 8 - 4}%`;
+        p.style.setProperty('--ty', `-${90 + Math.random() * 60}vh`);
+        p.style.setProperty('--tx', `${(Math.random() - 0.5) * 60}px`);
+      } else if (side === 'left') {
+        p.style.left = '0';
+        p.style.top = `${(i / smokeCount) * 100 + Math.random() * 8 - 4}%`;
+        p.style.setProperty('--tx', `${80 + Math.random() * 60}vw`);
+        p.style.setProperty('--ty', `${(Math.random() - 0.5) * 80}px`);
+      } else if (side === 'right') {
+        p.style.right = '0';
+        p.style.top = `${(i / smokeCount) * 100 + Math.random() * 8 - 4}%`;
+        p.style.setProperty('--tx', `-${80 + Math.random() * 60}vw`);
+        p.style.setProperty('--ty', `${(Math.random() - 0.5) * 80}px`);
+      } else {
+        p.style.top = '0';
+        p.style.left = `${(i / smokeCount) * 100 + Math.random() * 8 - 4}%`;
+        p.style.setProperty('--ty', `${90 + Math.random() * 60}vh`);
+        p.style.setProperty('--tx', `${(Math.random() - 0.5) * 60}px`);
+      }
       p.style.animationDelay = `${Math.random() * 0.6}s`;
       p.style.animationDuration = `${2.8 + Math.random() * 1.8}s`;
       overlay.appendChild(p);
     }
 
     // Brillo (partículas doradas/plateadas que explotan con el humo)
-    const sparkleCount = 40;
+    const sparkleCount = isMobile ? 16 : 40;
     for (let i = 0; i < sparkleCount; i++) {
       const s = document.createElement('div');
       s.className = 'sparkle';
