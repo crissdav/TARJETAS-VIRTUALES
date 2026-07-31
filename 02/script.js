@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
      1) CONFIGURACIÓN — EDITA ESTOS VALORES
      --------------------------------------------------------- */
 
-  // Fecha y hora del evento (formato: 'AAAA-MM-DDTHH:MM:SS')
-  const EVENT_DATE = new Date('2026-08-21T19:00:00');
+  // Fecha y hora del evento en HORA DE PERÚ (UTC-5, sin horario de verano)
+  // 19:00 Lima = 00:00 UTC del día siguiente
+  const EVENT_DATE = new Date(Date.UTC(2026, 7, 21, 24, 0, 0));
 
   // Número de WhatsApp que recibirá las confirmaciones (con código de país, sin + ni espacios)
   const WHATSAPP_NUMBER = '51917845115';
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
      2) POLVO MÁGICO — partículas flotantes
      --------------------------------------------------------- */
   const dustContainer = document.getElementById('magicDust');
-  const DUST_COLORS = ['#C9D6E8', '#B0D4E8', '#7EC8E3', '#DCE6F0'];
+  const DUST_COLORS = ['#E6C36B', '#A9D0EF', '#7CB6E4', '#F3E0A7'];
   const DUST_COUNT = window.innerWidth < 600 ? 16 : 28;
 
   for (let i = 0; i < DUST_COUNT; i++) {
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const wordContainer = document.getElementById('wordRain');
   if (wordContainer) {
     const WORDS = ['Sueña','Magia','Baila','Cree','Brilla','Amor','Sueño','Felicidad','Esperanza','Elegancia','Cuento','Ilusión','Estrella','Eternidad','Princesa','Carroza'];
-    const WORD_COLORS = ['#D2A94F', '#5FB4DC', '#1B3A6B', '#B9CCE4', '#E4CC8F'];
+    const WORD_COLORS = ['#E6C36B', '#A9D0EF', '#F3E0A7', '#BFD4EC', '#7CB6E4'];
     const WORD_COUNT = window.innerWidth < 600 ? 10 : 16;
 
     for (let i = 0; i < WORD_COUNT; i++) {
@@ -65,6 +66,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+
+  /* ---------------------------------------------------------
+     2.2) ESTRELLAS TITILANTES — capa fija
+     --------------------------------------------------------- */
+  const twinkleLayer = document.getElementById('twinkleLayer');
+  if (twinkleLayer) {
+    const T_COLORS = ['#F3E0A7', '#E6C36B', '#FFFFFF', '#A9D0EF'];
+    const T_COUNT = window.innerWidth < 600 ? 18 : 32;
+    for (let i = 0; i < T_COUNT; i++) {
+      const s = document.createElement('span');
+      s.className = 'twinkle-star';
+      const size = 2 + Math.random() * 3;
+      s.style.width = `${size}px`;
+      s.style.height = `${size}px`;
+      s.style.left = `${Math.random() * 100}%`;
+      s.style.top = `${Math.random() * 100}%`;
+      s.style.color = T_COLORS[Math.floor(Math.random() * T_COLORS.length)];
+      s.style.background = s.style.color;
+      s.style.animationDuration = `${2 + Math.random() * 4}s`;
+      s.style.animationDelay = `${Math.random() * 5}s`;
+      twinkleLayer.appendChild(s);
+    }
+  }
+
+  /* ---------------------------------------------------------
+     2.3) ORNAMENTOS DORADOS — figuras flotando
+     --------------------------------------------------------- */
+  const ornLayer = document.getElementById('ornLayer');
+  if (ornLayer) {
+    const GLYPHS = ['✦', '✧', '❖', '✾', '✶'];
+    const O_COUNT = window.innerWidth < 600 ? 8 : 14;
+    for (let i = 0; i < O_COUNT; i++) {
+      const o = document.createElement('span');
+      o.className = 'orn';
+      o.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+      o.style.left = `${Math.random() * 100}%`;
+      o.style.top = `${Math.random() * 100}%`;
+      o.style.fontSize = `${12 + Math.random() * 16}px`;
+      o.style.color = Math.random() < 0.6 ? '#E6C36B' : '#F3E0A7';
+      o.style.setProperty('--orx', `${(Math.random() - 0.5) * 40}px`);
+      o.style.animationDuration = `${8 + Math.random() * 10}s`;
+      o.style.animationDelay = `${Math.random() * 8}s`;
+      ornLayer.appendChild(o);
+    }
+  }
 
   /* estrellas del splash */
   const starsContainer = document.getElementById('splashStars');
@@ -161,6 +207,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function pad(n) { return String(n).padStart(2, '0'); }
 
+  function peruTime() {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'America/Lima',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).formatToParts(new Date());
+    const get = (t) => parseInt(parts.find((p) => p.type === t).value, 10);
+    let h = get('hour');
+    if (h === 24) h = 0;
+    return { h, m: get('minute'), s: get('second') };
+  }
+
   function tick(el) {
     el.parentElement.classList.add('tick');
     setTimeout(() => el.parentElement.classList.remove('tick'), 300);
@@ -195,10 +255,11 @@ document.addEventListener('DOMContentLoaded', () => {
       lastSecs = secs;
     }
 
-    // Manecillas del reloj: giran suavemente según el tiempo restante (efecto decorativo)
-    const minuteAngle = (mins / 60) * 360;
-    const hourAngle = (hours / 24) * 360;
-    if (minHand) minHand.setAttribute('transform', `rotate(${minuteAngle} 100 100)`);
+    // Manecillas del reloj: muestran la hora actual de Perú (America/Lima, UTC-5)
+    const t = peruTime();
+    const minAngle = t.m * 6 + t.s / 10;
+    const hourAngle = (t.h % 12) * 30 + t.m / 2;
+    if (minHand) minHand.setAttribute('transform', `rotate(${minAngle} 100 100)`);
     if (hourHand) hourHand.setAttribute('transform', `rotate(${hourAngle} 100 100)`);
   }
 
@@ -269,5 +330,20 @@ document.addEventListener('DOMContentLoaded', () => {
       musicToggle.setAttribute('aria-label', 'Reproducir música');
     }
   });
+
+  /* ---------------------------------------------------------
+     8) PALETA DE COLORES RESERVADOS — clic para saber el nombre
+     --------------------------------------------------------- */
+  const swatches = document.querySelectorAll('.dc-swatch');
+  const paletteLabel = document.getElementById('dcPaletteLabel');
+  if (swatches.length && paletteLabel) {
+    swatches.forEach((sw) => {
+      sw.addEventListener('click', () => {
+        swatches.forEach((s) => s.classList.remove('is-selected'));
+        sw.classList.add('is-selected');
+        paletteLabel.textContent = `Color reservado: ${sw.dataset.color}`;
+      });
+    });
+  }
 
 });

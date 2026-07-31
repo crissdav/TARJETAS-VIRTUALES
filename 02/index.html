@@ -25,6 +25,12 @@
 <!-- ============ LLUVIA DE PALABRAS ============ -->
 <div class="word-rain" id="wordRain" aria-hidden="true"></div>
 
+<!-- ============ ESTRELLAS TITILANTES ============ -->
+<div class="twinkle-layer" id="twinkleLayer" aria-hidden="true"></div>
+
+<!-- ============ ORNAMENTOS DORADOS ============ -->
+<div class="orn-layer" id="ornLayer" aria-hidden="true"></div>
+
 <!-- ============ SPLASH ============ -->
 <div class="splash" id="splash">
   <div class="splash-stars" id="splashStars" aria-hidden="true"></div>
@@ -76,19 +82,26 @@
   </div>
 </div>
 
-<!-- ============ SOBRE ============ -->
+<!-- ============ TARJETA DE DOBLE PUERTA ============ -->
 <div class="envelope-wrapper" id="envelopeWrapper">
   <div>
     <div class="envelope" id="envelope">
       <div class="envelope-letter">
         <div class="letter-content">
+          <img src="crown.png" alt="" class="letter-crown" aria-hidden="true">
           <div class="letter-xv">XV AÑOS</div>
           <div class="letter-line"></div>
           <div class="letter-name">Vianca Gabriela</div>
-          <div class="letter-sub">te invita a vivir su cuento de hadas</div>
         </div>
       </div>
-      <div class="envelope-flap"></div>
+      <div class="door door-left">
+        <div class="door-orn"><span class="door-star">✦</span></div>
+        <span class="door-handle" aria-hidden="true"></span>
+      </div>
+      <div class="door door-right">
+        <div class="door-orn"><span class="door-star">✦</span></div>
+        <span class="door-handle" aria-hidden="true"></span>
+      </div>
       <div class="envelope-seal">
         <svg viewBox="0 0 120 120" aria-hidden="true">
           <defs>
@@ -105,7 +118,6 @@
           <ellipse cx="52" cy="92" rx="18" ry="4" fill="#7EC8E3" opacity=".15" transform="rotate(-10 52 92)"/>
         </svg>
       </div>
-      <div class="envelope-body"></div>
     </div>
     <p class="envelope-hint">Toca el sello de cristal para abrir</p>
   </div>
@@ -181,6 +193,7 @@
 <!-- ============ COUNTDOWN ============ -->
 <section class="countdown-section" id="countdown">
   <img src="cinderella_1.png" alt="" class="cd-cinderella" aria-hidden="true">
+  <img src="cinderella_5.png" alt="" class="cd-cinderella-top" aria-hidden="true">
   <div class="container">
     <span class="eyebrow reveal">El reloj mágico</span>
     <h2 class="section-title reveal">Cuenta regresiva</h2>
@@ -188,18 +201,18 @@
 
     <div class="pocket-watch reveal-scale">
       <svg viewBox="0 0 200 200" aria-hidden="true">
-        <circle cx="100" cy="100" r="90" fill="none" stroke="#C9D6E8" stroke-width="3"/>
-        <circle cx="100" cy="100" r="78" fill="rgba(255,255,255,0.05)" stroke="#B0D4E8" stroke-width="1"/>
-        <circle cx="100" cy="14" r="6" fill="#7EC8E3"/>
-        <g stroke="#B0D4E8" stroke-width="2" stroke-linecap="round">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#E6C36B" stroke-width="3"/>
+        <circle cx="100" cy="100" r="78" fill="rgba(255,255,255,0.04)" stroke="#F3E0A7" stroke-width="1"/>
+        <circle cx="100" cy="14" r="6" fill="#E6C36B"/>
+        <g stroke="#F3E0A7" stroke-width="2" stroke-linecap="round">
           <line x1="100" y1="26" x2="100" y2="34"/>
           <line x1="174" y1="100" x2="166" y2="100"/>
           <line x1="100" y1="174" x2="100" y2="166"/>
           <line x1="26" y1="100" x2="34" y2="100"/>
         </g>
-        <line id="watchHourHand" x1="100" y1="100" x2="100" y2="60" stroke="#1B3A6B" stroke-width="4" stroke-linecap="round"/>
-        <line id="watchMinHand" x1="100" y1="100" x2="135" y2="100" stroke="#0B1E3D" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="100" cy="100" r="4" fill="#C9D6E8"/>
+        <line id="watchHourHand" x1="100" y1="100" x2="100" y2="60" stroke="#E6C36B" stroke-width="4" stroke-linecap="round"/>
+        <line id="watchMinHand" x1="100" y1="100" x2="135" y2="100" stroke="#F3E0A7" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="4" fill="#F3E0A7"/>
       </svg>
     </div>
 
@@ -231,13 +244,13 @@
         <span>Dom</span><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span>
       </div>
       <div class="cal-days">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span>1</span><span>2</span>
-        <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
-        <span>17</span><span>18</span><span>19</span><span>20</span><span class="cal-highlight">21</span><span>22</span><span>23</span>
-        <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
-        <span>31</span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span>1</span>
+        <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+        <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+        <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span class="cal-highlight">21</span><span>22</span>
+        <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+        <span>30</span><span>31</span>
       </div>
     </div>
   </div>
@@ -303,7 +316,7 @@
     <span class="eyebrow reveal">Código de vestimenta</span>
     <h2 class="section-title reveal">Dresscode</h2>
     <div class="section-divider reveal"></div>
-    <p class="section-sub reveal">Elegante — tonos azul real, plata y blanco. Como en el baile del palacio.</p>
+    <p class="section-sub reveal">Elegante. El azul, el celeste y la plata están reservados para la XV, te pedimos evitar esos tonos en tu vestuario.</p>
 
     <div class="dresscode-grid">
       <div class="dc-card reveal">
@@ -311,31 +324,34 @@
           <img src="dress.png" alt="" class="dc-icon dc-icon-dress" aria-hidden="true">
         </div>
         <h3>Damas</h3>
-        <p>Vestido largo o midi en tonos azul real, celeste, plata o blanco</p>
+        <p>Vestido largo o midi elegante, en tonos distintos al azul, celeste y plata (reservados para la XV)</p>
       </div>
       <div class="dc-card reveal">
         <div class="dc-icon-wrap">
           <img src="suit.png" alt="" class="dc-icon dc-icon-suit" aria-hidden="true">
         </div>
         <h3>Caballeros</h3>
-        <p>Terno formal azul marino o negro, camisa clara y corbata elegante</p>
+        <p>Terno formal en negro o gris oscuro, camisa clara y corbata elegante. Evita azul, celeste y plata</p>
       </div>
     </div>
 
     <p class="dc-quote reveal">«No importa cómo sufra tu corazón: si sigues creyendo, el sueño que deseas se hará realidad.»<span>— Cenicienta</span></p>
 
-    <div class="dc-palette reveal" aria-hidden="true">
-      <span class="dc-swatch" style="background:#0B1E3D" title="Azul Marino"></span>
-      <span class="dc-swatch" style="background:#1B3A6B" title="Azul Real"></span>
-      <span class="dc-swatch" style="background:#B0D4E8" title="Celeste"></span>
-      <span class="dc-swatch" style="background:#C9D6E8" title="Plata"></span>
-      <span class="dc-swatch" style="background:#FFFFFF" title="Blanco"></span>
+    <div class="dc-palette reveal">
+      <span class="dc-swatch" style="background:#0B1E3D" data-color="Azul Marino" title="Azul Marino"></span>
+      <span class="dc-swatch" style="background:#1B3A6B" data-color="Azul Real" title="Azul Real"></span>
+      <span class="dc-swatch" style="background:#B0D4E8" data-color="Celeste" title="Celeste"></span>
+      <span class="dc-swatch" style="background:#C9D6E8" data-color="Plata" title="Plata"></span>
+      <span class="dc-swatch" style="background:#FFFFFF" data-color="Blanco" title="Blanco"></span>
     </div>
+    <p class="dc-palette-label" id="dcPaletteLabel">Toca un color para saber su nombre</p>
+    <div class="dc-legend">Azul Marino · Azul Real · Celeste · Plata · Blanco</div>
   </div>
 </section>
 
 <!-- ============ RSVP ============ -->
 <section class="rsvp" id="rsvp">
+  <img src="cinderella_1.png" alt="" class="rsvp-cinderella" aria-hidden="true">
   <div class="container">
     <span class="eyebrow reveal">Confirma tu asistencia</span>
     <h2 class="section-title reveal">WhatsApp</h2>
