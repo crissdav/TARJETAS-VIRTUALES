@@ -150,6 +150,9 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   50%{ transform: translateY(-5px) rotate(1.1deg); }
 }
 
+/* Nombre apilado (una palabra debajo de la otra) */
+.name-stack > [data-letters]{ display:block; line-height: 1.08; overflow-wrap:anywhere; }
+
 /* =========================================================
    MAGIC DUST — partículas flotantes (doradas / azul hielo)
    ========================================================= */
@@ -326,7 +329,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .splash-name{
   font-family: var(--font-display);
-  font-size: clamp(40px, 8vw,56px);
+  font-size: clamp(48px, 9.5vw, 68px);
   letter-spacing: 3px;
   margin-top: 6px;
   color: var(--silver-bright);
@@ -519,7 +522,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .letter-content .letter-name{
   font-family: var(--font-script);
-  font-size: clamp(30px, 12vw, 68px);
+  font-size: clamp(34px, 13vw, 78px);
   color: var(--navy);
   margin-top: -8px;
   animation: letterNameGlow 3.5s ease-in-out infinite;
@@ -538,7 +541,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   margin-top: 16px;
   text-align:center;
   color: var(--text-light);
-  font-size: clamp(16px,1.33vw,17px);
+  font-size: clamp(18px,1.5vw,20px);
   letter-spacing: 1px;
   font-style: italic;
 }
@@ -748,8 +751,8 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 
 .hero-name{
   font-family: var(--font-script);
-  font-size: clamp(110px, 22vw,210px);
-  line-height: .85;
+  font-size: clamp(96px, 18vw, 185px);
+  line-height: .9;
   margin-bottom: 6px;
   color: var(--gold);
   text-shadow: 0 2px 22px rgba(230,195,107,.55);
@@ -840,13 +843,16 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   gap: 2px;
 }
 .hero-parents .parent-name{
-  font-family: var(--font-script);
-  font-size: clamp(24px,2.03vw,26px);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(25px, 2.1vw, 28px);
   color: var(--silver-bright);
-  line-height: 1.2;
+  line-height: 1.3;
+  letter-spacing: .5px;
 }
 .hero-parents .parent-conj{
-  font-size: clamp(14px,1.17vw,15px);
+  font-family: var(--font-body);
+  font-size: clamp(15px,1.25vw,16px);
   color: var(--text-muted);
   font-style: italic;
   line-height: 1;
@@ -972,7 +978,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   margin-top: 24px;
   font-style: italic;
   color: var(--text-light);
-  font-size: clamp(18px,1.56vw,20px);
+  font-size: clamp(21px,1.8vw,23px);
 }
 
 /* =========================================================
@@ -1060,7 +1066,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   gap: 4px;
 }
 .cal-days span{
-  font-size: clamp(21px,1.79vw,23px);
+  font-size: clamp(25px, 2.1vw, 27px);
   color: var(--text);
   padding: 7px 0;
   border-radius: 50%;
@@ -1163,7 +1169,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .story-quote::after{ content:"❞"; }
 .story-signature{
   font-family: var(--font-script);
-  font-size: clamp(38px,3.74vw,48px);
+  font-size: clamp(44px, 4.3vw, 56px);
   color: var(--navy);
   margin-top: 22px;
 }
@@ -1320,14 +1326,14 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .dc-icon-suit{ height: 165px; width: auto; }
 .dc-card h3{
   font-family: var(--font-display);
-  font-size: clamp(23px,1.95vw,25px);
+  font-size: clamp(24px, 2.04vw, 26px);
   letter-spacing: 3px;
   color: var(--gold);
   text-transform: uppercase;
   margin-bottom: 10px;
 }
 .dc-card p{
-  font-size: clamp(19px,1.64vw,21px);
+  font-size: clamp(20px, 1.7vw, 22px);
   color: var(--text-light);
   line-height: 1.55;
   max-width: 220px;
@@ -1481,27 +1487,27 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .event-card h3{
   font-family: var(--font-display);
-  font-size: clamp(20px,1.72vw,22px);
+  font-size: clamp(21px, 1.8vw, 23px);
   letter-spacing: 3px;
   color: var(--gold);
   text-transform: uppercase;
   margin-bottom: 12px;
 }
 .event-card .event-time{
-  font-size: clamp(28px,2.34vw,30px);
+  font-size: clamp(29px, 2.44vw, 31px);
   font-weight: 600;
   color: var(--gold);
   font-family: var(--font-display);
   letter-spacing: 1px;
 }
 .event-card .event-place{
-  font-size: clamp(19px,1.64vw,21px);
+  font-size: clamp(20px, 1.7vw, 22px);
   color: var(--text);
   margin-top: 6px;
   font-weight: 500;
 }
 .event-card .event-addr{
-  font-size: clamp(17px,1.4vw,18px);
+  font-size: clamp(18px, 1.5vw, 19px);
   color: var(--text-light);
   margin-top: 4px;
 }
@@ -1586,7 +1592,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .rsvp-intro{
   color: var(--text-light);
-  font-size: clamp(20px,1.72vw,22px);
+  font-size: clamp(21px, 1.8vw, 22px);
   font-style: italic;
   margin-bottom: 8px;
   line-height: 1.6;
@@ -1653,7 +1659,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .footer-name{
   font-family: var(--font-script);
-  font-size: clamp(56px, 6vw,78px);
+  font-size: clamp(66px, 7vw, 92px);
   color: var(--gold);
   text-shadow: 0 0 22px rgba(230,195,107,.45);
 }
@@ -1898,20 +1904,20 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   .event-card{ padding: 24px 16px; }
   .hero-date-card{ padding: 16px 20px; }
   .hero-parents{ padding: 12px 16px; }
-  .hero-parents .parent-name{ font-size: clamp(20px,1.72vw,22px); }
+  .hero-parents .parent-name{ font-size: clamp(22px, 1.87vw, 24px); }
   .hero{ padding: 32px 16px; }
-  .hero-name{ font-size: clamp(71px, 15vw,85px); }
+  .hero-name{ font-size: clamp(84px, 18vw, 105px); }
   .hero-quote{ font-size: clamp(20px,1.72vw,22px); }
   .story-quote{ font-size: clamp(22px,1.87vw,24px); line-height: 1.8; }
   .cal-card{ padding: 20px 18px; }
   .cal-month{ font-size: clamp(21px,1.79vw,23px); }
-  .cal-days span{ font-size: clamp(18px,1.56vw,20px); padding: 5px 0; }
+  .cal-days span{ font-size: clamp(21px,1.79vw,23px); padding: 5px 0; }
   .dc-icon-wrap{ height: 140px; }
   .dc-icon-dress{ height: 128px; }
   .dc-icon-suit{ height: 128px; }
   .dc-icon-wrap::before{ width: 120px; height: 120px; }
-  .dc-card h3{ font-size: clamp(19px,1.64vw,21px); }
-  .dc-card p{ font-size: clamp(17px,1.4vw,18px); }
+  .dc-card h3{ font-size: clamp(20px,1.7vw,22px); }
+  .dc-card p{ font-size: clamp(18px,1.5vw,19px); }
   .dc-quote{ font-size: clamp(20px,1.72vw,22px); }
 }
 

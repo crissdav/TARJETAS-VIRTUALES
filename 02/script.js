@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* estrellas del splash */
   const starsContainer = document.getElementById('splashStars');
   if (starsContainer) {
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 80; i++) {
       const star = document.createElement('div');
       star.className = 'star';
       star.style.left = `${Math.random() * 100}%`;
@@ -237,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const countdownNote = document.querySelector('.countdown-note');
   const hourHand = document.getElementById('watchHourHand');
   const minHand = document.getElementById('watchMinHand');
+  const secHand = document.getElementById('watchSecHand');
 
   function pad(n) { return String(n).padStart(2, '0'); }
 
@@ -287,17 +288,28 @@ document.addEventListener('DOMContentLoaded', () => {
       tick(cdSecs);
       lastSecs = secs;
     }
+  }
 
-    // Manecillas del reloj: muestran la hora actual de Perú (America/Lima, UTC-5)
+  /* ---------------------------------------------------------
+     RELOJ MÁGICO — marca la hora ACTUAL de Perú (America/Lima,
+     UTC-5). Es independiente de la cuenta regresiva.
+     --------------------------------------------------------- */
+  function updateClock() {
     const t = peruTime();
-    const minAngle = t.m * 6 + t.s / 10;
-    const hourAngle = (t.h % 12) * 30 + t.m / 2;
+    const secAngle = t.s * 6;
+    // La manecilla de minutos está dibujada apuntando a las 3 (90° desde las 12),
+    // por eso se resta 90° para que marque la posición correcta.
+    const minAngle = t.m * 6 + secAngle / 60 - 90;
+    const hourAngle = (t.h % 12) * 30 + t.m / 2 + t.s / 120;
+    if (secHand) secHand.setAttribute('transform', `rotate(${secAngle} 100 100)`);
     if (minHand) minHand.setAttribute('transform', `rotate(${minAngle} 100 100)`);
     if (hourHand) hourHand.setAttribute('transform', `rotate(${hourAngle} 100 100)`);
   }
 
   updateCountdown();
+  updateClock();
   setInterval(updateCountdown, 1000);
+  setInterval(updateClock, 1000);
 
   /* ---------------------------------------------------------
      5) SCROLL REVEAL
