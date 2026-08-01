@@ -327,10 +327,12 @@ document.addEventListener('DOMContentLoaded', () => {
   revealEls.forEach(el => observer.observe(el));
 
   /* ---------------------------------------------------------
-     6) RSVP → WHATSAPP
+     6) RSVP → GUARDAR EN BACKEND + WHATSAPP
      --------------------------------------------------------- */
   const btnWhatsapp = document.getElementById('btnWhatsapp');
   const toast = document.getElementById('toast');
+
+  const API_URL = 'http://localhost:3000/api/confirmaciones';
 
   function showToast(msg) {
     toast.textContent = msg;
@@ -338,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => toast.classList.remove('is-visible'), 3200);
   }
 
-  btnWhatsapp.addEventListener('click', () => {
+  btnWhatsapp.addEventListener('click', async () => {
     const name = document.getElementById('guestName').value.trim();
     const companion = document.getElementById('guestCompanion').value.trim();
 
@@ -348,11 +350,26 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    let saved = false;
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ invitado: name, acompanante: companion })
+      });
+      saved = res.ok;
+    } catch (e) {
+      saved = false;
+    }
+
     let message = `¡Hola! Confirmo mi asistencia a los XV años de ${QUINCEANERA_NAME}.\nNombre: ${name}`;
     if (companion) message += `\nAcompañante: ${companion}`;
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+
+    showToast(saved
+      ? 'Confirmación guardada · se abrió WhatsApp 📲'
+      : 'No se pudo guardar (revisa que el servidor esté activo) · se abrió WhatsApp 📲');
   });
 
   /* ---------------------------------------------------------

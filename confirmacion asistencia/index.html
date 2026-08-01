@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmación de Asistencia · XV Vianca Gabriela</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="title">Confirmación de Asistencia</h1>
+      <p class="subtitle">XV Años · Vianca Gabriela · 21 de Agosto</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <div class="stat-card">
+        <span class="stat-num" id="statTotal">0</span>
+        <span class="stat-label">Confirmaciones</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statPeople">0</span>
+        <span class="stat-label">Personas</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statArrived">0</span>
+        <span class="stat-label">Ya llegaron</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statPending">0</span>
+        <span class="stat-label">Pendientes</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-tools">
+        <input type="search" id="searchInput" placeholder="Buscar invitado o acompañante…" aria-label="Buscar">
+        <button class="btn-outline" id="btnRefresh" title="Actualizar la lista">Actualizar</button>
+        <button class="btn-outline" id="btnExport" title="Descargar la lista en CSV">Exportar CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Invitado</th>
+              <th>Acompañante</th>
+              <th>Confirmó</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <p class="empty" id="emptyState" hidden>Sin confirmaciones todavía.</p>
+      <p class="status-line" id="statusLine">Cargando…</p>
+    </section>
+
+    <p class="footnote">El recepcionista marca la llegada de cada invitado conforme aparece en la puerta.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
