@@ -369,14 +369,41 @@ document.addEventListener('DOMContentLoaded', () => {
      --------------------------------------------------------- */
   const swatches = document.querySelectorAll('.dc-swatch');
   const paletteLabel = document.getElementById('dcPaletteLabel');
+  const defaultPaletteLabel = 'Estos tonos están reservados para la XV';
   if (swatches.length && paletteLabel) {
     swatches.forEach((sw) => {
-      sw.addEventListener('click', () => {
+      sw.addEventListener('click', (e) => {
+        e.stopPropagation();
         swatches.forEach((s) => s.classList.remove('is-selected'));
         sw.classList.add('is-selected');
         paletteLabel.textContent = `Color reservado: ${sw.dataset.color}`;
       });
     });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dc-swatch-item')) {
+        swatches.forEach((s) => s.classList.remove('is-selected'));
+        paletteLabel.textContent = defaultPaletteLabel;
+      }
+    });
   }
+
+  /* ---------------------------------------------------------
+     LETRAS ANIMADAS — divide cada texto en letras que flotan
+     --------------------------------------------------------- */
+  document.querySelectorAll('[data-letters]').forEach((el) => {
+    if (el.dataset.lettersDone === '1') return;
+    el.dataset.lettersDone = '1';
+    const text = el.textContent;
+    el.textContent = '';
+    const frag = document.createDocumentFragment();
+    [...text].forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.className = 'ltr';
+      span.style.setProperty('--i', i);
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      frag.appendChild(span);
+    });
+    el.appendChild(frag);
+  });
 
 });

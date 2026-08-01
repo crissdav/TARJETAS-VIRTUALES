@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="slipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C9D6E8" stop-opacity=".95"/>
+      <stop offset="50%" stop-color="#E8F0F8" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#B0D4E8" stop-opacity=".9"/>
+    </linearGradient>
+  </defs>
+  <path d="M50 95 L30 80 C22 74 20 64 24 56 L38 30 C42 22 50 18 58 20 L68 22 C76 24 82 32 80 40 L78 48 C76 52 74 56 74 60 L88 94 C90 98 86 104 82 104 L56 104 C52 104 48 100 50 95 Z" fill="url(#slipGrad)" stroke="#7EC8E3" stroke-width="1.2" opacity=".9"/>
+  <path d="M74 60 C74 60 70 50 66 46 L62 44" stroke="#7EC8E3" stroke-width="2" fill="none" opacity=".6"/>
+  <path d="M50 95 C50 95 44 84 44 78" stroke="#7EC8E3" stroke-width="1.5" fill="none" opacity=".5"/>
+  <path d="M26 40 L28 47 L35 49 L28 51 L26 58 L24 51 L17 49 L24 47 Z" fill="#F6E7B6" opacity=".95"/>
+  <path d="M82 14 L83.4 18.6 L88 20 L83.4 21.4 L82 26 L80.6 21.4 L76 20 L80.6 18.6 Z" fill="#F6E7B6" opacity=".8"/>
+  <path d="M98 44 L99.1 47.9 L103 49 L99.1 50.1 L98 54 L96.9 50.1 L93 49 L96.9 47.9 Z" fill="#F6E7B6" opacity=".85"/>
+  <path d="M12 74 L13.2 78.2 L17.4 79.4 L13.2 80.6 L12 84.8 L10.8 80.6 L6.6 79.4 L10.8 78.2 Z" fill="#F6E7B6" opacity=".6"/>
+</svg>

@@ -35,8 +35,6 @@
 <div class="splash" id="splash">
   <div class="splash-stars" id="splashStars" aria-hidden="true"></div>
 
-  <img src="cinderella_2.png" alt="" class="splash-cinderella" aria-hidden="true">
-
   <svg class="splash-castle" viewBox="0 0 200 175" fill="none" aria-hidden="true">
     <rect x="25" y="85" width="150" height="88" fill="#1B3A6B" rx="4"/>
     <rect x="75" y="22" width="50" height="63" fill="#1B3A6B" rx="4"/>
@@ -71,10 +69,12 @@
     <circle cx="125" cy="6" r="2.5" fill="#C9D6E8" opacity=".7"/>
   </svg>
 
+  <img src="cinderella.svg" alt="" class="splash-princess" aria-hidden="true">
+
   <div class="splash-content">
     <span class="splash-eyebrow">Faltan pocas horas para</span>
-    <h1 class="splash-title">XV</h1>
-    <p class="splash-name">Vianca Gabriela</p>
+    <h1 class="splash-title" data-letters>XV</h1>
+    <p class="splash-name" data-letters>Vianca Gabriela</p>
     <p class="splash-tagline">"Hasta en los sueños más imposibles, la magia encuentra su hora."</p>
 
     <button class="btn-open" id="btnOpenSplash" type="button">Abrir invitación</button>
@@ -88,10 +88,10 @@
     <div class="envelope" id="envelope">
       <div class="envelope-letter">
         <div class="letter-content">
-          <img src="crown.png" alt="" class="letter-crown" aria-hidden="true">
-          <div class="letter-xv">XV AÑOS</div>
+          <img src="slipper.svg" alt="" class="letter-crown" aria-hidden="true">
+          <div class="letter-xv" data-letters>XV AÑOS</div>
           <div class="letter-line"></div>
-          <div class="letter-name">Vianca Gabriela</div>
+          <div class="letter-name" data-letters>Vianca Gabriela</div>
         </div>
       </div>
       <div class="door door-left">
@@ -162,7 +162,7 @@
       </svg>
 
       <span class="hero-eyebrow">Mis quince años</span>
-      <h2 class="hero-name">Vianca Gabriela</h2>
+      <h2 class="hero-name" data-letters>Vianca Gabriela</h2>
       <p class="hero-xv"><span class="xv-star">✦</span> A LAS DOCE CAMPANADAS <span class="xv-star">✦</span></p>
 
       <p class="hero-quote">"Ni siquiera puedo decirte cuánto he soñado con esta noche. Ven a celebrarla conmigo, como en el cuento más bonito."</p>
@@ -317,36 +317,56 @@
     <span class="eyebrow reveal">Código de vestimenta</span>
     <h2 class="section-title reveal">Dresscode</h2>
     <div class="section-divider reveal"></div>
-    <p class="section-sub reveal">Elegante. El azul, el celeste y la plata están reservados para la XV, te pedimos evitar esos tonos en tu vestuario.</p>
+    <p class="section-sub reveal">Elegante. Revisa la paleta de colores reservados para la XV y evita esos tonos en tu atuendo.</p>
 
+    <!-- Bloque 1: Paleta reservada para la XV -->
+    <div class="dc-palette-block reveal">
+      <h3 class="dc-palette-title">Paleta reservada para la XV</h3>
+      <div class="dc-palette">
+        <div class="dc-swatch-item" title="Azul Marino">
+          <span class="dc-swatch" style="background:#0B1E3D" data-color="Azul Marino"></span>
+          <span class="dc-swatch-name">Azul Marino</span>
+        </div>
+        <div class="dc-swatch-item" title="Azul Real">
+          <span class="dc-swatch" style="background:#1B3A6B" data-color="Azul Real"></span>
+          <span class="dc-swatch-name">Azul Real</span>
+        </div>
+        <div class="dc-swatch-item" title="Celeste">
+          <span class="dc-swatch" style="background:#B0D4E8" data-color="Celeste"></span>
+          <span class="dc-swatch-name">Celeste</span>
+        </div>
+        <div class="dc-swatch-item" title="Plata">
+          <span class="dc-swatch" style="background:#C9D6E8" data-color="Plata"></span>
+          <span class="dc-swatch-name">Plata</span>
+        </div>
+        <div class="dc-swatch-item" title="Blanco">
+          <span class="dc-swatch" style="background:#FFFFFF" data-color="Blanco"></span>
+          <span class="dc-swatch-name">Blanco</span>
+        </div>
+      </div>
+      <p class="dc-palette-label" id="dcPaletteLabel">Estos tonos están reservados para la XV</p>
+    </div>
+
+    <!-- Bloque 2: Cómo ir vestido -->
+    <h3 class="dc-guide-title reveal">¿Cómo ir vestido?</h3>
     <div class="dresscode-grid">
       <div class="dc-card reveal">
         <div class="dc-icon-wrap">
           <img src="dress.png" alt="" class="dc-icon dc-icon-dress" aria-hidden="true">
         </div>
         <h3>Damas</h3>
-        <p>Vestido largo o midi elegante, en tonos distintos al azul, celeste y plata (reservados para la XV)</p>
+        <p>Vestido largo o midi elegante, en tonos distintos a los de la paleta reservada.</p>
       </div>
       <div class="dc-card reveal">
         <div class="dc-icon-wrap">
           <img src="suit.png" alt="" class="dc-icon dc-icon-suit" aria-hidden="true">
         </div>
         <h3>Caballeros</h3>
-        <p>Terno formal en negro o gris oscuro, camisa clara y corbata elegante. Evita azul, celeste y plata</p>
+        <p>Terno formal en negro o gris oscuro, camisa clara y corbata elegante. Evita los tonos de la paleta reservada.</p>
       </div>
     </div>
 
     <p class="dc-quote reveal">«No importa cómo sufra tu corazón: si sigues creyendo, el sueño que deseas se hará realidad.»<span>— Cenicienta</span></p>
-
-    <div class="dc-palette reveal">
-      <span class="dc-swatch" style="background:#0B1E3D" data-color="Azul Marino" title="Azul Marino"></span>
-      <span class="dc-swatch" style="background:#1B3A6B" data-color="Azul Real" title="Azul Real"></span>
-      <span class="dc-swatch" style="background:#B0D4E8" data-color="Celeste" title="Celeste"></span>
-      <span class="dc-swatch" style="background:#C9D6E8" data-color="Plata" title="Plata"></span>
-      <span class="dc-swatch" style="background:#FFFFFF" data-color="Blanco" title="Blanco"></span>
-    </div>
-    <p class="dc-palette-label" id="dcPaletteLabel">Toca un color para saber su nombre</p>
-    <div class="dc-legend">Azul Marino · Azul Real · Celeste · Plata · Blanco</div>
   </div>
 </section>
 
@@ -382,7 +402,7 @@
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <img src="crown.png" alt="" class="footer-slipper" aria-hidden="true">
+  <img src="princess-gold.svg" alt="" class="footer-slipper" aria-hidden="true">
   <p class="footer-name">Vianca Gabriela</p>
   <p class="footer-sub">XV AÑOS · 21 de Agosto</p>
   <p class="footer-credit">A las doce campanadas, la magia comienza</p>

@@ -137,6 +137,19 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .reveal-scale.is-visible{ opacity:1; transform: scale(1); }
 
+/* Letras animadas letra por letra */
+[data-letters] .ltr{
+  display:inline-block;
+  white-space:pre;
+  transform-origin: 50% 85%;
+  animation: ltrDance 3s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * .08s);
+}
+@keyframes ltrDance{
+  0%,100%{ transform: translateY(0) rotate(0deg); }
+  50%{ transform: translateY(-5px) rotate(1.1deg); }
+}
+
 /* =========================================================
    MAGIC DUST — partículas flotantes (doradas / azul hielo)
    ========================================================= */
@@ -248,7 +261,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   text-align:center;
   background:
     radial-gradient(ellipse at 50% 20%, rgba(230,195,107,0.5), transparent 60%),
-    linear-gradient(180deg, var(--celeste-bg) 0%, var(--celeste-light) 60%, var(--celeste-card) 100%);
+    linear-gradient(180deg, var(--celeste-bg) 0%, var(--celeste-card) 55%, var(--navy) 100%);
   transition: opacity 1s var(--ease), visibility 1s var(--ease);
   padding: 24px;
   overflow:hidden;
@@ -271,13 +284,29 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 
 
-.splash-content{ position:relative; z-index:1; }
+.splash-princess{
+    position:absolute;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    height: clamp(200px, 25vh, 340px);
+    width:auto;
+    opacity:.95;
+    pointer-events:none;
+    z-index:0;
+    filter: drop-shadow(0 0 34px rgba(230,195,107,.5));
+  }
+
+.splash-content{ position:relative; z-index:1; margin-bottom: clamp(120px, 18vh, 170px); }
 
 .splash-castle{
   width: min(70vw, 260px);
   margin-bottom: 18px;
   opacity: .92;
   filter: drop-shadow(0 0 24px rgba(230,195,107,.5));
+  position:relative;
+  z-index:1;
+  flex-shrink:0;
 }
 
 .splash-eyebrow{
@@ -297,10 +326,20 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 .splash-name{
   font-family: var(--font-display);
-  font-size: clamp(30px, 6vw,41px);
+  font-size: clamp(40px, 8vw,56px);
   letter-spacing: 3px;
   margin-top: 6px;
   color: var(--silver-bright);
+  text-shadow: 0 0 18px rgba(200,220,245,.45);
+}
+.splash-name .ltr{
+  background: linear-gradient(100deg, #B8CDE6 20%, #E8F2FB 40%, #FFFFFF 50%, #E8F2FB 60%, #B8CDE6 80%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 5s ease-in-out infinite, ltrDance 3s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * .09s), calc(var(--i, 0) * .09s);
 }
 .splash-tagline{
   font-style: italic;
@@ -463,14 +502,16 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   font-size: clamp(24px, 8vw, 51px);
   letter-spacing: 4px;
   color: #B8860B;
+  text-shadow: 0 1px 0 rgba(10,22,51,.4), 0 2px 8px rgba(10,22,51,.28);
+}
+.letter-content .letter-xv .ltr{
   background: linear-gradient(100deg, #B8860B 20%, #D9B44A 40%, #F6E7B6 50%, #D9B44A 60%, #B8860B 80%);
   background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #B8860B;
-  text-shadow: 0 1px 0 rgba(10,22,51,.4), 0 2px 8px rgba(10,22,51,.28);
-  animation: goldShimmer 4s ease-in-out infinite;
+  animation: goldShimmer 4s ease-in-out infinite, ltrDance 3s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * .1s), calc(var(--i, 0) * .1s);
 }
 .letter-content .letter-line{
   width: min(10vw, 56px); height:1px; background: var(--gold-soft);
@@ -515,7 +556,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   background:
     radial-gradient(ellipse at 60% 0%, var(--navy-light) 0%, transparent 55%),
     radial-gradient(ellipse at 30% 100%, rgba(230,195,107,.25) 0%, transparent 45%),
-    linear-gradient(180deg, var(--celeste-light) 0%, var(--celeste-bg) 45%, var(--navy) 100%);
+    linear-gradient(180deg, var(--celeste-card) 0%, var(--celeste-bg) 45%, var(--navy) 100%);
   position:relative;
   overflow:hidden;
 }
@@ -547,6 +588,19 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 
 .hero-visual{ position:relative; }
+.hero-visual::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  width: 75%;
+  aspect-ratio: 1;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(230,195,107,.32), rgba(230,195,107,0) 70%);
+  z-index:0;
+  pointer-events:none;
+}
 
 .hero-cinderella-bg{
   position:absolute;
@@ -554,9 +608,9 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   bottom: 0;
   width: 75%;
   max-height: 100%;
-  opacity: .3;
+  opacity: .16;
   pointer-events:none;
-  filter: blur(2px);
+  filter: blur(1px);
   z-index:0;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4) 20%, rgba(0,0,0,.8));
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4) 20%, rgba(0,0,0,.8));
@@ -570,9 +624,9 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .hero-cinderella-main{
   width: 100%;
   height: auto;
-  max-height: 82vh;
+  max-height: 88vh;
   object-fit: contain;
-  filter: drop-shadow(0 0 40px rgba(230,195,107,.4));
+  filter: drop-shadow(0 0 45px rgba(230,195,107,.55)) brightness(1.07) saturate(1.06);
   animation: heroCindyFloat 5s ease-in-out infinite;
   position:relative;
   z-index:1;
@@ -604,23 +658,6 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 }
 @media (min-width: 820px){
   .hero-castle{ margin-left:0; margin-right:0; }
-}
-
-.splash-cinderella{
-  position:absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: min(92vw, 500px);
-  opacity: .8;
-  pointer-events:none;
-  filter: drop-shadow(0 0 30px rgba(230,195,107,.6));
-  z-index:0;
-  animation: splashCindyFloat 7s ease-in-out infinite;
-}
-@keyframes splashCindyFloat{
-  0%,100%{ transform: translateX(-50%) translateY(0); }
-  50%{ transform: translateX(-50%) translateY(-10px); }
 }
 
 .hero-cinderella{ display:none; }
@@ -711,11 +748,20 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 
 .hero-name{
   font-family: var(--font-script);
-  font-size: clamp(97px, 20vw,184px);
-  color: var(--gold);
+  font-size: clamp(110px, 22vw,210px);
   line-height: .85;
-  text-shadow: 0 4px 30px rgba(230,195,107,.5);
   margin-bottom: 6px;
+  color: var(--gold);
+  text-shadow: 0 2px 22px rgba(230,195,107,.55);
+}
+.hero-name .ltr{
+  background: linear-gradient(100deg, var(--gold) 20%, var(--gold-soft) 40%, #fff8e0 50%, var(--gold-soft) 60%, var(--gold) 80%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 5s ease-in-out infinite, ltrDance 3s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * .09s), calc(var(--i, 0) * .09s);
 }
 
 .hero-xv{
@@ -1197,6 +1243,13 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
     margin-left: 0;
     margin-right: auto;
   }
+  .dc-palette-block{
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .dc-guide-title{
+    text-align: left;
+  }
 }
 .dresscode-grid{
   display:grid;
@@ -1288,7 +1341,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   font-style: italic;
   font-size: clamp(23px,1.95vw,25px);
   line-height: 1.7;
-  color: var(--silver-bright);
+  color: var(--navy);
   position:relative;
 }
 .dc-quote::before{
@@ -1307,14 +1360,41 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   font-size: clamp(17px,1.4vw,18px);
   letter-spacing:3px;
   text-transform:uppercase;
+  font-weight:700;
+  color: #8A6412;
+}
+.dc-palette-block{
+  max-width: 480px;
+  margin: 34px auto 0;
+  padding: 28px 20px 22px;
+  background: rgba(10,22,51,0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+.dc-palette-title{
+  font-family: var(--font-display);
+  font-size: clamp(21px,1.95vw,25px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
   color: var(--gold);
+  text-align:center;
+  margin-bottom: 22px;
 }
 .dc-palette{
-  display:flex; justify-content:center; gap:10px;
-  margin-top: 30px;
+  display:flex; justify-content:center; flex-wrap:wrap; gap:18px 16px;
+}
+.dc-swatch-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
 }
 .dc-swatch{
-  width: 32px; height:32px; border-radius:50%;
+  width: 42px; height:42px; border-radius:50%;
   border: 2px solid var(--silver);
   box-shadow: 0 2px 8px var(--shadow);
   cursor:pointer;
@@ -1326,6 +1406,13 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(230,195,107,.55), 0 2px 8px var(--shadow);
 }
+.dc-swatch-name{
+  font-family: var(--font-body);
+  font-size: clamp(16px,1.48vw,19px);
+  color: var(--text-light);
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
 .dc-palette-label{
   margin-top: 18px;
   font-family: var(--font-display);
@@ -1335,12 +1422,14 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   color: var(--silver-bright);
   min-height: 24px;
 }
-.dc-legend{
-  margin-top: 10px;
-  font-size: clamp(18px,1.56vw,20px);
-  font-style: italic;
-  color: var(--text-light);
-  letter-spacing: 1px;
+.dc-guide-title{
+  font-family: var(--font-display);
+  font-size: clamp(21px,1.95vw,25px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align:center;
+  margin: 48px auto 0;
 }
 
 /* =========================================================
@@ -1455,6 +1544,7 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
   text-align:center;
   position:relative;
   overflow:hidden;
+  padding-bottom: 12px;
 }
 .rsvp .container{ position:relative; z-index:1; }
 .rsvp-cinderella{
@@ -1548,32 +1638,34 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
    FOOTER
    ========================================================= */
 .footer{
-  padding: 60px 24px 40px;
+  padding: 16px 24px 40px;
   text-align:center;
   background: linear-gradient(180deg, var(--celeste-bg), var(--celeste-light));
 }
 .footer-slipper{
-  width: 32px;
+  width: 120px;
+  max-width: 50%;
   height: auto;
   display: block;
-  margin: 0 auto 10px;
-  opacity:.7;
-  filter: drop-shadow(0 0 6px rgba(230,195,107,.4));
+  margin: 0 auto 14px;
+  opacity:.95;
+  filter: drop-shadow(0 0 18px rgba(230,195,107,.5));
 }
 .footer-name{
   font-family: var(--font-script);
-  font-size: clamp(33px,3.2vw,41px);
+  font-size: clamp(56px, 6vw,78px);
   color: var(--gold);
+  text-shadow: 0 0 22px rgba(230,195,107,.45);
 }
 .footer-sub{
-  font-size: clamp(17px,1.4vw,18px);
+  font-size: clamp(22px,2vw,28px);
   color: var(--text-light);
   letter-spacing: 1px;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .footer-credit{
   margin-top: 26px;
-  font-size: clamp(13px,1.09vw,14px);
+  font-size: clamp(18px,1.5vw,22px);
   color: var(--text-light);
   letter-spacing: .5px;
 }
@@ -1828,16 +1920,14 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
    ========================================================= */
 .countdown-section .eyebrow,
 .gallery .eyebrow,
-.rsvp .eyebrow{ color: #8A6412; }
+.rsvp .eyebrow{ color: #7A570F; font-weight: 700; }
 
 .countdown-section .section-title,
 .gallery .section-title,
-.rsvp .section-title{ color: #7A570F; text-shadow: none; }
+.rsvp .section-title{ color: #7A570F; text-shadow: none; font-weight: 700; }
 
 .countdown-section .section-sub,
 .gallery .section-sub{ color: var(--navy); }
-
-.dresscode .dc-legend{ color: var(--navy); }
 
 .footer .footer-sub,
 .footer .footer-credit{ color: var(--navy); }

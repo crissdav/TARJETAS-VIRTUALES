@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 460">
+  <defs>
+    <linearGradient id="gDress" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5E3AC"/>
+      <stop offset="45%" stop-color="#D9B44A"/>
+      <stop offset="100%" stop-color="#A87B1F"/>
+    </linearGradient>
+    <linearGradient id="gSkin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FBF0CF"/>
+      <stop offset="100%" stop-color="#E8CD85"/>
+    </linearGradient>
+    <linearGradient id="gHair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C89B3C"/>
+      <stop offset="100%" stop-color="#8A6412"/>
+    </linearGradient>
+  </defs>
+
+  <!-- cabello (detras) -->
+  <circle cx="150" cy="142" r="46" fill="url(#gHair)"/>
+
+  <!-- vestido -->
+  <path d="M150 216
+    C 128 216, 118 228, 118 248
+    C 118 262, 120 276, 122 290
+    C 124 304, 126 318, 124 334
+    C 120 352, 106 372, 88 392
+    C 74 408, 62 420, 50 430
+    C 90 438, 120 440, 150 440
+    C 180 440, 210 438, 250 430
+    C 238 420, 226 408, 212 392
+    C 194 372, 180 352, 176 334
+    C 174 318, 176 304, 178 290
+    C 180 276, 182 262, 182 248
+    C 182 228, 172 216, 150 216 Z" fill="url(#gDress)"/>
+
+  <!-- cuello -->
+  <path d="M136 216 L136 192 C136 184, 142 180, 150 180 C158 180, 164 184, 164 192 L164 216 Z" fill="url(#gSkin)"/>
+
+  <!-- mechones laterales -->
+  <path d="M116 178 C 102 192, 98 212, 106 230 C 112 220, 118 208, 122 196 C 124 190, 124 184, 118 180 Z" fill="url(#gHair)"/>
+  <path d="M184 178 C 198 192, 202 212, 194 230 C 188 220, 182 208, 178 196 C 176 190, 176 184, 182 180 Z" fill="url(#gHair)"/>
+
+  <!-- brazos -->
+  <path d="M120 246 C 106 266, 98 290, 102 312" stroke="url(#gSkin)" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <path d="M180 246 C 194 266, 202 290, 198 312" stroke="url(#gSkin)" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+  <!-- cabeza -->
+  <ellipse cx="150" cy="146" rx="30" ry="34" fill="url(#gSkin)"/>
+
+  <!-- detalle pecho -->
+  <rect x="145" y="238" width="10" height="10" transform="rotate(45 150 243)" fill="#FFF3C4"/>
+
+  <!-- corona -->
+  <path d="M120 118 L124 100 L134 110 L142 88 L150 104 L158 88 L166 110 L176 100 L180 118 Z" fill="url(#gHair)"/>
+  <rect x="120" y="112" width="60" height="8" fill="url(#gHair)"/>
+  <circle cx="150" cy="116" r="3.5" fill="#FFF3C4"/>
+  <circle cx="131" cy="116" r="2" fill="#F5E3AC"/>
+  <circle cx="169" cy="116" r="2" fill="#F5E3AC"/>
+</svg>
