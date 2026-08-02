@@ -406,6 +406,11 @@
         <button type="button" class="btn-whatsapp" id="btnWhatsapp">
           Confirmar por WhatsApp
         </button>
+        <div class="rsvp-qr" id="rsvpQr" hidden>
+          <p class="rsvp-qr-hint">Tu código QR de acceso · muéstralo en la entrada</p>
+          <canvas id="rsvpQrCanvas" aria-hidden="true"></canvas>
+          <a class="rsvp-qr-dl" id="rsvpQrDownload" download="qr-asistencia.png">Descargar QR</a>
+        </div>
       </form>
     </div>
   </div>
@@ -435,6 +440,7 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="qrcode-generator.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

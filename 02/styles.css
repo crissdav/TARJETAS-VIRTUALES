@@ -1621,6 +1621,41 @@ section{ position: relative; padding: 100px 0; overflow-x: hidden; contain: pain
 .rsvp-form input::placeholder{ color: var(--text-muted); opacity:.95; }
 .rsvp-form input:focus{ border-color: var(--gold); outline:none; }
 
+/* QR de acceso */
+.rsvp-qr{
+  margin-top: 4px;
+  padding: 14px;
+  text-align: center;
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(230,195,107,.5);
+  border-radius: var(--radius);
+}
+.rsvp-qr[hidden]{ display:none; }
+.rsvp-qr-hint{
+  color: #4a3a1a;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+#rsvpQrCanvas{
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
+  border: 1px solid #e6c36b;
+  border-radius: 10px;
+  background: #fff;
+}
+.rsvp-qr-dl{
+  display: inline-block;
+  margin-top: 10px;
+  color: #4a3a1a;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .btn-whatsapp{
   margin-top: 6px;
   width:100%;
