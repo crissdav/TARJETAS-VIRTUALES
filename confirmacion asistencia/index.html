@@ -10,7 +10,8 @@
   <div class="login-screen" id="loginScreen" hidden>
     <form class="login-card" id="loginForm">
       <h2 class="login-title">Acceso · Recepción</h2>
-      <p class="login-sub">Ingresa la contraseña para administrar la lista de confirmados.</p>
+      <p class="login-sub">Ingresa con el usuario de recepción para administrar la lista de confirmados.</p>
+      <input type="email" id="loginEmail" placeholder="Correo del recepcionista" autocomplete="username" required>
       <input type="password" id="loginPassword" placeholder="Contraseña" autocomplete="current-password" required>
       <button type="submit" class="btn-login">Entrar</button>
       <p class="login-error" id="loginError" hidden></p>
@@ -88,6 +89,7 @@
     </div>
   </div>
 
+  <script src="supabase.min.js"></script>
   <script src="jsQR.min.js"></script>
   <script src="script.js"></script>
 </body>

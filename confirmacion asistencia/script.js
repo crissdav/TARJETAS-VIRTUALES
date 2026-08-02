@@ -1,19 +1,11 @@
-const API = '/api/confirmaciones';
+const SUPABASE_URL = 'https://dgogtngftdqibxrwmgzs.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnb2d0bmdmdGRxaWJ4cndtZ3pzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2Njg0NDEsImV4cCI6MjEwMTI0NDQ0MX0.uPAoAVgW13JwzaGoKX3k8CNYGZSvjroB29PGaP6frhA';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const TOKEN_KEY = 'xv_recepcion_token';
 let list = [];
 let filter = '';
 
-function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
-function setToken(t) { localStorage.setItem(TOKEN_KEY, t); }
-function clearToken() { localStorage.removeItem(TOKEN_KEY); }
-
-function authHeaders() {
-  return { 'Authorization': 'Bearer ' + getToken() };
-}
-
 function showLogin(msg) {
-  clearToken();
   document.getElementById('loginScreen').hidden = false;
   document.getElementById('btnLogout').hidden = true;
   const err = document.getElementById('loginError');
@@ -26,24 +18,18 @@ function hideLogin() {
   document.getElementById('btnLogout').hidden = false;
 }
 
-function handleUnauthorized() {
-  showLogin('Tu sesión expiró. Vuelve a ingresar tu contraseña.');
-  throw new Error('no autorizado');
-}
-
 async function load() {
-  if (!getToken()) return;
   try {
-    const res = await fetch(API, { headers: authHeaders() });
-    if (res.status === 401) return handleUnauthorized();
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    list = await res.json();
+    const { data, error } = await supabaseClient
+      .from('confirmaciones')
+      .select('*')
+      .order('id', { ascending: false });
+    if (error) throw error;
+    list = data || [];
     setStatus('Actualizado ' + new Date().toLocaleTimeString('es-PE') + ' · ' + list.length + ' registros');
     render();
   } catch (e) {
-    if (e.message !== 'no autorizado') {
-      setStatus('No se pudo conectar con el servidor: ' + e.message);
-    }
+    setStatus('No se pudo conectar con Supabase: ' + e.message);
   }
 }
 
@@ -157,15 +143,23 @@ function render() {
 }
 
 async function doConfirm(id, action) {
-  const res = await fetch(API + '/' + id + '/' + action, { method: 'POST', headers: authHeaders() });
-  if (res.status === 401) return handleUnauthorized();
+  const patch = { confirmado_en: new Date().toISOString() };
+  if (action === 'confirmar') {
+    patch.confirmado = true;
+    patch.invitado_confirmado = true;
+    patch.acompanante_confirmado = true;
+  } else if (action === 'confirmar-invitado') {
+    patch.invitado_confirmado = true;
+  } else if (action === 'confirmar-acompanante') {
+    patch.acompanante_confirmado = true;
+  }
+  await supabaseClient.from('confirmaciones').update(patch).eq('id', id);
   load();
 }
 
 async function remove(id) {
   if (!confirm('¿Eliminar esta confirmación?')) return;
-  const res = await fetch(API + '/' + id, { method: 'DELETE', headers: authHeaders() });
-  if (res.status === 401) return handleUnauthorized();
+  await supabaseClient.from('confirmaciones').delete().eq('id', id);
   load();
 }
 
@@ -273,43 +267,48 @@ function stopScanner() {
 document.getElementById('btnScan').addEventListener('click', openScanner);
 document.getElementById('btnScanClose').addEventListener('click', stopScanner);
 
+/* ---------- Login con Supabase Auth ---------- */
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const input = document.getElementById('loginPassword');
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
   const err = document.getElementById('loginError');
-  try {
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password: input.value })
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      err.hidden = false;
-      err.textContent = data.error || 'No se pudo iniciar sesión';
-      return;
-    }
-    setToken(data.token);
-    hideLogin();
-    input.value = '';
-    err.hidden = true;
-    load();
-  } catch (e) {
+  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+  if (error) {
     err.hidden = false;
-    err.textContent = 'No se pudo conectar con el servidor';
+    err.textContent = 'Correo o contraseña incorrectos';
+    return;
   }
+  err.hidden = true;
 });
 
 document.getElementById('btnLogout').addEventListener('click', async () => {
-  await fetch('/api/logout', { method: 'POST', headers: authHeaders() }).catch(() => {});
+  await supabaseClient.auth.signOut();
   showLogin();
 });
 
-if (getToken()) {
-  hideLogin();
-  load();
-} else {
-  showLogin();
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (session) {
+    hideLogin();
+    load();
+  } else {
+    showLogin();
+  }
+});
+
+supabaseClient.auth.getSession().then(({ data }) => {
+  if (data.session) {
+    hideLogin();
+    load();
+  } else {
+    showLogin();
+  }
+});
+
+async function refreshIfAuthed() {
+  const { data } = await supabaseClient.auth.getSession();
+  if (data.session) load();
 }
-setInterval(load, 5000);
-window.addEventListener('focus', load);
+
+setInterval(refreshIfAuthed, 5000);
+window.addEventListener('focus', refreshIfAuthed);

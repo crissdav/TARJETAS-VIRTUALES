@@ -1,80 +1,58 @@
 # Sistema de Confirmación de Asistencia — XV Vianca Gabriela
 
-Documentación de qué hace cada parte del sistema y qué queda pendiente.
+Documentación de qué hace cada parte del sistema y cómo desplegarlo.
 
 ---
 
-## 1. Qué existe y qué hace cada cosa
+## 1. Arquitectura
+
+**Sin servidor propio.** Los datos viven en **Supabase** (Postgres en la nube).
+Tanto la invitación como la landing del recepcionista hablan directo con
+Supabase por REST. Ya **no** hace falta correr `server.js` ni tener Node/SQLite.
 
 ### Invitación virtual — `C:\TARJETAS\02`
-- Invitación estática (HTML/CSS/JS, sin dependencias) publicada en
+- Invitación estática (HTML/CSS/JS) publicada en
   https://xv-vianca-gabriela.netlify.app/ .
-- Sección **Confirmar asistencia** (RSVP): campos *Tu nombre completo* (obligatorio)
-  y *Nombre de tu acompañante* (opcional).
-- Al escribir el nombre se genera en vivo un **QR de acceso** (canvas `#rsvpQrCanvas`)
-  con `qrcode-generator.js`; hay botón **Descargar QR**.
+- Sección **Confirmar asistencia** (RSVP): campos *Tu nombre completo*
+  (obligatorio) y *Nombre de tu acompañante* (opcional).
+- Al escribir el nombre se genera en vivo un **QR de acceso** (canvas
+  `#rsvpQrCanvas`) con `qrcode-generator.js`; hay botón **Descargar QR**.
 - Al pulsar **Confirmar por WhatsApp**:
-  1. Envía los datos por `POST` a la API del backend
-     (`http://localhost:3000/api/confirmaciones`).
+  1. Inserta la confirmación en Supabase (tabla `confirmaciones`, política
+     `publico_insert` para el rol `anon`). La `anon key` solo permite crear
+     registros, no leer ni modificar.
   2. Descarga automáticamente la imagen del QR (`qr-asistencia.png`) para que el
      invitado la adjunte al chat.
   3. Abre WhatsApp (`wa.me/51917845115`) con el mensaje de confirmación, que
      incluye la nota *"Te adjunto mi QR de acceso"*.
   4. Muestra un toast indicando si se guardó o si falló.
 
-  > Nota: WhatsApp no permite adjuntar imágenes automáticamente desde un link
+  > WhatsApp no permite adjuntar imágenes automáticamente desde un link
   > `wa.me`; por eso el QR se descarga y el invitado lo adjunta al mensaje.
-  > El botón **Descargar QR** sigue disponible para bajar la imagen a mano.
+
 - El contenido del QR es: `INVITADO: <nombre>` y, si hay acompañante, además
   `ACOMPAÑANTE: <nombre>`. Se codifica en UTF-8 (si no, los acentos rompen la
-  lectura con jsQR).
+  lectura con jsQR). El QR sirve **solo** para que el recepcionista busque al
+  invitado y marque su llegada.
+- El QR es **único por invitado**: la tabla tiene un índice único sobre el
+  nombre normalizado (sin mayúsculas, acentos ni espacios), así dos personas no
+  pueden confirmar con el mismo nombre.
 
-### Backend — `C:\TARJETAS\confirmacion asistencia\server.js`
-- **Node.js puro** (sin dependencias externas) usando módulos integrados
-  (`http`) y **SQLite** (`node:sqlite`, incluido en Node 22+).
-- Base de datos: `confirmaciones.db` (se crea sola al primer arranque).
-- Sirve la landing del recepcionista en `/` y expone la API REST con **CORS
-  habilitado** (para que la invitación pueda enviarle datos desde otro origen).
+### Base de datos — tabla `confirmaciones`
+Columnas: `id`, `invitado`, `acompanante`, `fecha`, `confirmado`,
+`confirmado_en`, `invitado_confirmado`, `acompanante_confirmado`,
+`invitado_norm` (columna generada para detectar duplicados).
 
-### API REST — `http://localhost:3000`
+La confirmación de llegada es **permanente** (una sola vez, sin "Deshacer"):
+cada nombre confirmado aparece **tachado** en la lista, pero el registro no se
+elimina y sigue apareciendo al buscar.
 
-| Método | Ruta | Función |
-|---|---|---|
-| `GET` | `/api/confirmaciones` | Lista todas las confirmaciones (más recientes primero). **Requiere sesión** |
-| `POST` | `/api/confirmaciones` | Crea una confirmación (`{ invitado, acompanante }`). Pública (invitación) |
-| `POST` | `/api/confirmaciones/:id/confirmar` | Confirma **general** (invitado + acompañante). **Requiere sesión** |
-| `POST` | `/api/confirmaciones/:id/confirmar-invitado` | Confirma solo el invitado. **Requiere sesión** |
-| `POST` | `/api/confirmaciones/:id/confirmar-acompanante` | Confirma solo el acompañante. **Requiere sesión** |
-| `DELETE` | `/api/confirmaciones/:id` | Elimina una confirmación. **Requiere sesión** |
-| `GET` | `/api/confirmaciones/:id/qr` | PNG con el QR de acceso del invitado. Público (sin sesión) |
-| `POST` | `/api/login` | Inicia sesión (`{ password }`) y devuelve un token |
-| `POST` | `/api/logout` | Cierra la sesión (invalida el token) |
-
-### Autenticación de la landing (recepcionista)
-- La landing pide una **contraseña** antes de mostrar la lista. Las rutas de
-  lectura y de modificación exigen el header `Authorization: Bearer <token>`.
-- `POST /api/login` devuelve un token que expira por **inactividad de 3 horas**
-  (cada petición autenticada renueva el contador); si no hay actividad, vuelve a
-  pedir la clave. El token se guarda en `localStorage` y se envía en cada
-  petición.
-- La contraseña se configura con la variable de entorno `ADMIN_PASSWORD`
-  (valor por defecto: `xv2026vianca`). Cámbiala antes de usarlo en producción:
-  ```bash
-  set ADMIN_PASSWORD=tu-clave & node "C:\TARJETAS\confirmacion asistencia\server.js"
-  ```
-- La creación de confirmaciones desde la invitación sigue siendo pública.
-
-Campos de cada registro: `id`, `invitado`, `acompanante`, `fecha`,
-`confirmado` (0/1), `confirmado_en`, `invitado_confirmado` (0/1),
-`acompanante_confirmado` (0/1).
-
-La confirmación es **permanente** (una sola vez, sin "Deshacer"): cada nombre
-confirmado aparece **tachado** en la lista, pero el registro no se elimina y
-sigue apareciendo al buscar.
-
-Al crear una confirmación, el backend rechaza con `409` un `invitado` que ya
-exista, ignorando mayúsculas, acentos y espacios (la invitación muestra el
-motivo en el toast).
+### Seguridad (RLS)
+- **Público** (la invitación, rol `anon`): solo puede **INSERTAR**.
+- **Recepcionista** (rol `authenticated`, con sesión en Supabase Auth): puede
+  **ver, actualizar y eliminar**.
+- El login de la landing usa **Supabase Auth** (correo + contraseña), no una
+  contraseña compartida.
 
 ### Landing del recepcionista — `C:\TARJETAS\confirmacion asistencia`
 - **`index.html` / `styles.css` / `script.js`**: panel con
@@ -85,86 +63,84 @@ motivo en el toast).
     al confirmar) y **Eliminar**.
   - Buscador por nombre, botón **Actualizar** y **Exportar CSV**.
   - Auto-refresco cada 5 segundos y al recibir foco la pestaña.
-  - Pantalla de login con contraseña y botón **Cerrar sesión**.
-
-### Escáner QR en la landing
-- Botón **Escanear QR** (`#btnScan`) que abre la cámara (`environment`) en un
+  - Login con Supabase Auth y botón **Cerrar sesión**.
+- **Escáner QR**: botón **Escanear QR** (`#btnScan`) que abre la cámara en un
   overlay; `jsQR.min.js` decodifica el QR y extrae el nombre con
-  `/INVITADO:\s*(.+)/i`.
-- Al detectarlo: filtra la búsqueda con ese nombre, resalta la fila (`.row-flash`)
-  y la centra en pantalla para confirmar la llegada al instante.
+  `/INVITADO:\s*(.+)/i`. Al detectarlo, filtra la búsqueda con ese nombre,
+  resalta la fila (`.row-flash`) y la centra en pantalla para confirmar la
+  llegada al instante.
 
 ---
 
-## 2. Cómo correr en local
+## 2. Configuración de Supabase (una sola vez)
 
-```bash
-node "C:\TARJETAS\confirmacion asistencia\server.js"
-```
-
-- Landing: http://localhost:3000/
-- API: http://localhost:3000/api/confirmaciones
-- Invitación: abrir `C:\TARJETAS\02\index.html` directamente (file://) o servirla.
-
-Para detener el servidor: `taskkill /IM node.exe /F`
+1. Crea un proyecto en https://supabase.com (gratis).
+2. Abre **SQL Editor** y pega el contenido de `supabase-setup.sql` (crea la
+   tabla, el índice único anti-duplicados y las políticas de RLS). Ejecútalo.
+3. Crea el **usuario del recepcionista**: en *Authentication → Users → Add user*,
+   pon un correo y una contraseña. (Necesario porque la política `authenticated`
+   solo permite ver/editar con sesión iniciada.)
+4. Copia la **URL del proyecto** y la **anon key** de *Settings → API* y pégalas
+   en la parte superior de:
+   - `02\script.js` → `SUPABASE_URL` y `SUPABASE_ANON_KEY`
+   - `confirmacion asistencia\script.js` → `SUPABASE_URL` y `SUPABASE_ANON_KEY`
 
 ---
 
-## 3. Qué falta / pendientes
+## 3. Despliegue
 
-### ⚠️ Crítico — el backend no está en la nube
-La invitación **publicada en Netlify** apunta a `http://localhost:3000`, que los
-visitantes de la web **no pueden alcanzar**. Para que la lista de invitados se
-llene desde la invitación pública hay que llevar los datos a un servicio cloud.
-Decisión pendiente del cliente. Opciones evaluadas:
-
-1. **Supabase (recomendada)** — gratis, sin servidor que mantener.
-   - Crear proyecto en supabase.com, tabla `confirmaciones` con RLS pública.
-   - La invitación y la landing leen/escriben por REST con el `anon key`.
-   - Solo hay que cambiar la URL de la API en `script.js` de la invitación y
-     reescribir la landing para usar Supabase.
-2. **Desplegar el backend Node en Render/Railway** — hay que cambiar SQLite por
-   Postgres en la nube (el disco gratis de SQLite se borra al reiniciar).
-3. **Netlify Functions + Supabase/Atlas** — lógica serverless en el mismo hosting
-   de Netlify, más pasos de configuración.
-
-### Deploy de la invitación (ya listo para subir)
-- La carpeta `02\` está lista para publicarse en Netlify (drag & drop en
-  app.netlify.com/drop). El zip de despliegue se genera con:
+### Invitación (Netlify)
+- Generar el zip:
   ```bash
   Compress-Archive -Path "C:\TARJETAS\02\*" -DestinationPath "C:\TARJETAS\tarjeta02-deploy.zip" -Force
   ```
-- La invitación ya publicada: https://xv-vianca-gabriela.netlify.app/ .
-- Cuando exista el backend en la nube, hay que cambiar `API_URL` en
-  `02\script.js` para que la confirmación llegue al nuevo host.
+- Subirlo por drag & drop en https://app.netlify.com/drop (o por GitHub).
+- Ya publicada: https://xv-vianca-gabriela.netlify.app/
 
-### Secundarios / mejoras futuras
-- El número de WhatsApp (`51917845115`) está fijo en la configuración de la
-  invitación (`script.js`).
-- Manejo de no-respondidos: se podría enviar recordatorio por WhatsApp a los que
-  no han confirmado.
-- La confirmación visual en la invitación de que "quedó guardado" es solo un
-  toast; se puede reforzar con un mensaje más visible.
+### Landing del recepcionista
+- Es una página estática que habla con Supabase. Publica la carpeta
+  `confirmacion asistencia` en un hosting estático (Netlify, GitHub Pages, etc.)
+  como un segundo sitio, y guárdalo como favorito en el celular del recepcionista.
+- Acceso: entra con el correo/contraseña del usuario de recepción creado en
+  Supabase Auth.
 
 ---
 
-## 4. Estructura
+## 4. Cómo probar en local (opcional)
+
+Ya no es necesario correr un backend. Para probar la invitación en local basta
+abrir `02\index.html` (file://) o servir la carpeta; para probar la landing,
+servir `confirmacion asistencia`. Ambos necesitan que el proyecto de Supabase
+exista y que las `SUPABASE_URL`/`SUPABASE_ANON_KEY` estén configuradas.
+
+---
+
+## 5. Estructura
 
 ```
 C:\TARJETAS\
 ├── 02\                          # Invitación virtual (Netlify)
-│   ├── index.html
+│   ├── index.html               # Incluye supabase-js desde CDN
 │   ├── styles.css
-│   ├── script.js                # RSVP → POST a la API + WhatsApp + QR en vivo
+│   ├── script.js                # RSVP → INSERT en Supabase + WhatsApp + QR en vivo
 │   ├── qrcode-generator.js      # Genera el QR del canvas (codificación UTF-8)
 │   └── assets (imágenes, audio)
 │
-└── confirmacion asistencia\     # Sistema de confirmación (backend + landing)
-    ├── server.js                # Backend Node + SQLite + API REST + PNG QR
-    ├── qrcode-generator.js      # Genera el PNG del QR del servidor
-    ├── index.html               # Landing del recepcionista
+└── confirmacion asistencia\     # Landing del recepcionista (estática, Supabase)
+    ├── supabase-setup.sql       # SQL: tabla + índice único + políticas RLS
+    ├── index.html               # Login con Supabase Auth + panel
     ├── styles.css
     ├── script.js                # Lógica de la tabla + escáner QR (jsQR)
     ├── jsQR.min.js              # Lector de QR en la cámara
-    └── confirmaciones.db        # Base de datos (se genera sola)
+    └── server.js                # (ya no se usa) Backend Node+SQLite anterior
 ```
+
+---
+
+## 6. Pendientes
+
+- Nada urgente. Recordar a los invitados que la confirmación necesita que el
+  proyecto de Supabase esté activo (plan gratis incluye esto sin problema).
+- El número de WhatsApp (`51917845115`) está fijo en `02\script.js`.
+- Mejora opcional: mensaje de "¡Confirmado!" más visible en la invitación (hoy
+  solo un toast).
