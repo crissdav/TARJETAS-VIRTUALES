@@ -7,11 +7,22 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="login-screen" id="loginScreen" hidden>
+    <form class="login-card" id="loginForm">
+      <h2 class="login-title">Acceso · Recepción</h2>
+      <p class="login-sub">Ingresa la contraseña para administrar la lista de confirmados.</p>
+      <input type="password" id="loginPassword" placeholder="Contraseña" autocomplete="current-password" required>
+      <button type="submit" class="btn-login">Entrar</button>
+      <p class="login-error" id="loginError" hidden></p>
+    </form>
+  </div>
+
   <header class="topbar">
     <div class="container">
       <h1 class="title">Confirmación de Asistencia</h1>
       <p class="subtitle">XV Años · Vianca Gabriela · 21 de Agosto</p>
     </div>
+    <button class="btn-logout" id="btnLogout" hidden>Cerrar sesión</button>
   </header>
 
   <main class="container">
@@ -37,6 +48,7 @@
     <section class="panel">
       <div class="panel-tools">
         <input type="search" id="searchInput" placeholder="Buscar invitado o acompañante…" aria-label="Buscar">
+        <button class="btn-outline" id="btnScan" title="Escanear el QR del invitado">Escanear QR</button>
         <button class="btn-outline" id="btnRefresh" title="Actualizar la lista">Actualizar</button>
         <button class="btn-outline" id="btnExport" title="Descargar la lista en CSV">Exportar CSV</button>
       </div>
@@ -64,6 +76,19 @@
     <p class="footnote">El recepcionista marca la llegada de cada invitado conforme aparece en la puerta.</p>
   </main>
 
+  <div class="scanner-overlay" id="scannerOverlay" hidden>
+    <div class="scanner-box">
+      <h3 class="scanner-title">Escanear QR del invitado</h3>
+      <div class="scanner-viewport">
+        <video id="scannerVideo" playsinline muted></video>
+        <canvas id="scannerCanvas" hidden></canvas>
+      </div>
+      <p class="scanner-status" id="scannerStatus">Solicitando acceso a la cámara…</p>
+      <button class="btn-login" id="btnScanClose">Cancelar</button>
+    </div>
+  </div>
+
+  <script src="jsQR.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

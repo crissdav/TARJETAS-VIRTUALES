@@ -1,17 +1,49 @@
 const API = '/api/confirmaciones';
 
+const TOKEN_KEY = 'xv_recepcion_token';
 let list = [];
 let filter = '';
 
+function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
+function setToken(t) { localStorage.setItem(TOKEN_KEY, t); }
+function clearToken() { localStorage.removeItem(TOKEN_KEY); }
+
+function authHeaders() {
+  return { 'Authorization': 'Bearer ' + getToken() };
+}
+
+function showLogin(msg) {
+  clearToken();
+  document.getElementById('loginScreen').hidden = false;
+  document.getElementById('btnLogout').hidden = true;
+  const err = document.getElementById('loginError');
+  err.hidden = !msg;
+  err.textContent = msg || '';
+}
+
+function hideLogin() {
+  document.getElementById('loginScreen').hidden = true;
+  document.getElementById('btnLogout').hidden = false;
+}
+
+function handleUnauthorized() {
+  showLogin('Tu sesión expiró. Vuelve a ingresar tu contraseña.');
+  throw new Error('no autorizado');
+}
+
 async function load() {
+  if (!getToken()) return;
   try {
-    const res = await fetch(API);
+    const res = await fetch(API, { headers: authHeaders() });
+    if (res.status === 401) return handleUnauthorized();
     if (!res.ok) throw new Error('HTTP ' + res.status);
     list = await res.json();
     setStatus('Actualizado ' + new Date().toLocaleTimeString('es-PE') + ' · ' + list.length + ' registros');
     render();
   } catch (e) {
-    setStatus('No se pudo conectar con el servidor: ' + e.message);
+    if (e.message !== 'no autorizado') {
+      setStatus('No se pudo conectar con el servidor: ' + e.message);
+    }
   }
 }
 
@@ -45,37 +77,70 @@ function render() {
 
   filtered.forEach((e, i) => {
     const tr = document.createElement('tr');
-    if (e.confirmado) tr.classList.add('row-arrived');
+    const invDone = !!e.invitado_confirmado;
+    const accDone = !!e.acompanante_confirmado;
+    const hasComp = !!(e.acompanante || '').trim();
+    if (invDone && (!hasComp || accDone)) tr.classList.add('row-arrived');
 
     const tdNum = document.createElement('td');
     tdNum.textContent = i + 1;
+    tdNum.dataset.label = '#';
 
     const tdInv = document.createElement('td');
     tdInv.textContent = e.invitado || '';
+    tdInv.dataset.label = 'Invitado';
+    if (invDone) tdInv.classList.add('name-done');
 
     const tdAcc = document.createElement('td');
-    tdAcc.textContent = e.acompanante || '—';
+    tdAcc.textContent = hasComp ? e.acompanante : '—';
+    tdAcc.dataset.label = 'Acompañante';
+    if (hasComp && accDone) tdAcc.classList.add('name-done');
 
     const tdFecha = document.createElement('td');
     tdFecha.className = 'td-date';
-    tdFecha.textContent = formatDate(e.fecha);
+    tdFecha.textContent = formatDate(e.confirmado_en || e.fecha);
+    tdFecha.dataset.label = 'Confirmó';
 
     const tdEstado = document.createElement('td');
     const badge = document.createElement('span');
-    badge.className = 'badge ' + (e.confirmado ? 'badge-ok' : 'badge-pend');
-    badge.textContent = e.confirmado ? 'Llegó' : 'Pendiente';
+    let estado, badgeCls;
+    if (invDone && (!hasComp || accDone)) { estado = 'Llegaron'; badgeCls = 'badge-ok'; }
+    else if (invDone) { estado = 'Invitado llegó'; badgeCls = 'badge-ok'; }
+    else if (accDone) { estado = 'Acompañante llegó'; badgeCls = 'badge-ok'; }
+    else { estado = 'Pendiente'; badgeCls = 'badge-pend'; }
+    badge.className = 'badge ' + badgeCls;
+    badge.textContent = estado;
     tdEstado.appendChild(badge);
+    tdEstado.dataset.label = 'Estado';
 
     const tdActions = document.createElement('td');
-    const btnConfirm = document.createElement('button');
-    btnConfirm.className = 'btn-action ' + (e.confirmado ? 'btn-undo' : 'btn-arrive');
-    btnConfirm.textContent = e.confirmado ? 'Deshacer' : 'Confirmar llegada';
-    btnConfirm.addEventListener('click', () => toggleArrive(e.id, !!e.confirmado));
+    tdActions.dataset.label = 'Acciones';
+    if (!invDone || (hasComp && !accDone)) {
+      const btnAll = document.createElement('button');
+      btnAll.className = 'btn-action btn-arrive';
+      btnAll.textContent = 'Confirmar general';
+      btnAll.addEventListener('click', () => doConfirm(e.id, 'confirmar'));
+      tdActions.appendChild(btnAll);
+    }
+    if (!invDone) {
+      const btnInv = document.createElement('button');
+      btnInv.className = 'btn-action btn-arrive';
+      btnInv.textContent = 'Confirmar invitado';
+      btnInv.addEventListener('click', () => doConfirm(e.id, 'confirmar-invitado'));
+      tdActions.appendChild(btnInv);
+    }
+    if (hasComp && !accDone) {
+      const btnAcc = document.createElement('button');
+      btnAcc.className = 'btn-action btn-arrive';
+      btnAcc.textContent = 'Confirmar acompañante';
+      btnAcc.addEventListener('click', () => doConfirm(e.id, 'confirmar-acompanante'));
+      tdActions.appendChild(btnAcc);
+    }
     const btnDel = document.createElement('button');
     btnDel.className = 'btn-action btn-del';
     btnDel.textContent = 'Eliminar';
     btnDel.addEventListener('click', () => remove(e.id));
-    tdActions.append(btnConfirm, btnDel);
+    tdActions.appendChild(btnDel);
 
     tr.append(tdNum, tdInv, tdAcc, tdFecha, tdEstado, tdActions);
     tbody.appendChild(tr);
@@ -83,29 +148,42 @@ function render() {
 
   document.getElementById('statTotal').textContent = list.length;
   document.getElementById('statPeople').textContent =
-    list.reduce((s, e) => s + 1 + (e.acompanante ? 1 : 0), 0);
-  document.getElementById('statArrived').textContent = list.filter(e => e.confirmado).length;
+    list.reduce((s, e) => s + 1 + ((e.acompanante || '').trim() ? 1 : 0), 0);
+  document.getElementById('statArrived').textContent =
+    list.reduce((s, e) => s + (e.invitado_confirmado ? 1 : 0) + (e.acompanante_confirmado ? 1 : 0), 0);
   document.getElementById('statPending').textContent =
-    list.length - list.filter(e => e.confirmado).length;
+    document.getElementById('statPeople').textContent -
+    document.getElementById('statArrived').textContent;
 }
 
-async function toggleArrive(id, isConfirmed) {
-  const url = API + '/' + id + '/' + (isConfirmed ? 'desconfirmar' : 'confirmar');
-  await fetch(url, { method: 'POST' });
+async function doConfirm(id, action) {
+  const res = await fetch(API + '/' + id + '/' + action, { method: 'POST', headers: authHeaders() });
+  if (res.status === 401) return handleUnauthorized();
   load();
 }
 
 async function remove(id) {
   if (!confirm('¿Eliminar esta confirmación?')) return;
-  await fetch(API + '/' + id, { method: 'DELETE' });
+  const res = await fetch(API + '/' + id, { method: 'DELETE', headers: authHeaders() });
+  if (res.status === 401) return handleUnauthorized();
   load();
+}
+
+function estadoCsv(e) {
+  const inv = !!e.invitado_confirmado;
+  const acc = !!e.acompanante_confirmado;
+  const hasComp = !!(e.acompanante || '').trim();
+  if (inv && (!hasComp || acc)) return 'Llegaron';
+  if (inv) return 'Invitado llegó';
+  if (acc) return 'Acompañante llegó';
+  return 'Pendiente';
 }
 
 function exportCsv() {
   if (!list.length) { alert('No hay confirmaciones para exportar.'); return; }
   const rows = [['#', 'Invitado', 'Acompañante', 'Confirmó', 'Estado']];
   list.slice().reverse().forEach((e, i) => {
-    rows.push([i + 1, e.invitado || '', e.acompanante || '', formatDate(e.fecha), e.confirmado ? 'Llegó' : 'Pendiente']);
+    rows.push([i + 1, e.invitado || '', e.acompanante || '', formatDate(e.confirmado_en || e.fecha), estadoCsv(e)]);
   });
   const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
   const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -125,6 +203,113 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 document.getElementById('btnRefresh').addEventListener('click', load);
 document.getElementById('btnExport').addEventListener('click', exportCsv);
 
-load();
+/* ---------- Escáner QR ---------- */
+let scanStream = null;
+let scanTimer = null;
+const scanVideo = document.getElementById('scannerVideo');
+const scanCanvas = document.getElementById('scannerCanvas');
+const scanCtx = scanCanvas.getContext('2d', { willReadFrequently: true });
+
+function parseQrName(text) {
+  const m = /INVITADO:\s*(.+)/i.exec(text || '');
+  return m ? m[1].trim() : '';
+}
+
+function scanTick() {
+  if (!scanVideo.videoWidth) return;
+  scanCanvas.width = scanVideo.videoWidth;
+  scanCanvas.height = scanVideo.videoHeight;
+  scanCtx.drawImage(scanVideo, 0, 0);
+  const img = scanCtx.getImageData(0, 0, scanCanvas.width, scanCanvas.height);
+  const code = jsQR(img.data, img.width, img.height, { inversionAttempts: 'attemptBoth' });
+  if (!code || !code.data) return;
+  stopScanner();
+  const name = parseQrName(code.data);
+  if (!name) {
+    setStatus('QR no válido: no contiene un invitado');
+    return;
+  }
+  const input = document.getElementById('searchInput');
+  input.value = name;
+  filter = name;
+  render();
+  setStatus('QR detectado: ' + name);
+  const firstRow = document.querySelector('#tableBody tr');
+  if (firstRow) {
+    firstRow.classList.add('row-flash');
+    setTimeout(() => firstRow.classList.remove('row-flash'), 1600);
+    firstRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+async function openScanner() {
+  document.getElementById('scannerOverlay').hidden = false;
+  document.getElementById('scannerStatus').textContent = 'Solicitando acceso a la cámara…';
+  try {
+    scanStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'environment' }
+    });
+    scanVideo.srcObject = scanStream;
+    await scanVideo.play();
+    document.getElementById('scannerStatus').textContent = 'Apunta al QR del invitado…';
+    scanTimer = setInterval(scanTick, 120);
+  } catch (e) {
+    document.getElementById('scannerStatus').textContent =
+      'No se pudo acceder a la cámara: ' + (e && e.message ? e.message : e);
+  }
+}
+
+function stopScanner() {
+  clearInterval(scanTimer);
+  scanTimer = null;
+  if (scanStream) {
+    scanStream.getTracks().forEach((t) => t.stop());
+    scanStream = null;
+  }
+  scanVideo.srcObject = null;
+  document.getElementById('scannerOverlay').hidden = true;
+}
+
+document.getElementById('btnScan').addEventListener('click', openScanner);
+document.getElementById('btnScanClose').addEventListener('click', stopScanner);
+
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const input = document.getElementById('loginPassword');
+  const err = document.getElementById('loginError');
+  try {
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: input.value })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      err.hidden = false;
+      err.textContent = data.error || 'No se pudo iniciar sesión';
+      return;
+    }
+    setToken(data.token);
+    hideLogin();
+    input.value = '';
+    err.hidden = true;
+    load();
+  } catch (e) {
+    err.hidden = false;
+    err.textContent = 'No se pudo conectar con el servidor';
+  }
+});
+
+document.getElementById('btnLogout').addEventListener('click', async () => {
+  await fetch('/api/logout', { method: 'POST', headers: authHeaders() }).catch(() => {});
+  showLogin();
+});
+
+if (getToken()) {
+  hideLogin();
+  load();
+} else {
+  showLogin();
+}
 setInterval(load, 5000);
 window.addEventListener('focus', load);
