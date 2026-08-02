@@ -13,10 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const EVENT_DATE = new Date(Date.UTC(2026, 7, 21, 24, 0, 0));
 
   // Número de WhatsApp que recibirá las confirmaciones (con código de país, sin + ni espacios)
-  const WHATSAPP_NUMBER = '51917845115';
+  const WHATSAPP_NUMBER = '51963433528';
 
   // Nombre de la quinceañera (para el mensaje de WhatsApp)
   const QUINCEANERA_NAME = 'Vianca Gabriela';
+
+  // Supabase — pega aquí la URL y la anon key de tu proyecto
+  const SUPABASE_URL = 'https://dgogtngftdqibxrwmgzs.supabase.co';
+   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRnb2d0bmdmdGRxaWJ4cndtZ3pzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2Njg0NDEsImV4cCI6MjEwMTI0NDQ0MX0.uPAoAVgW13JwzaGoKX3k8CNYGZSvjroB29PGaP6frhA';
 
 
   /* ---------------------------------------------------------
@@ -334,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const guestName = document.getElementById('guestName');
   const guestCompanion = document.getElementById('guestCompanion');
 
-  const API_URL = 'http://localhost:3000/api/confirmaciones';
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   function showToast(msg) {
     toast.textContent = msg;
@@ -346,6 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const qrBox = document.getElementById('rsvpQr');
   const qrCanvas = document.getElementById('rsvpQrCanvas');
   const qrDownload = document.getElementById('rsvpQrDownload');
+  let qrDownloaded = false;
 
   function qrContentText(name, companion) {
     let s = 'INVITADO: ' + name;
@@ -378,29 +383,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateQr() {
     const name = guestName.value.trim();
-    if (!name) { qrBox.hidden = true; return; }
+    qrDownloaded = false;
+    if (!name) { qrBox.hidden = true; btnWhatsapp.disabled = true; return; }
     const companion = guestCompanion.value.trim();
     const content = qrContentText(name, companion);
     const px = drawQr(content, 260);
     qrDownload.href = qrCanvas.toDataURL('image/png');
     qrBox.hidden = false;
+    btnWhatsapp.disabled = true;
     return content;
-  }
-
-  function sendQrToWhatsApp() {
-    if (qrBox.hidden) return false;
-    try {
-      qrDownload.href = qrCanvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.href = qrDownload.href;
-      link.download = 'qr-asistencia.png';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      return true;
-    } catch (e) {
-      return false;
-    }
   }
 
   guestName.addEventListener('input', updateQr);
@@ -408,6 +399,8 @@ document.addEventListener('DOMContentLoaded', () => {
   qrDownload.addEventListener('click', (e) => {
     e.stopPropagation();
     qrDownload.href = qrCanvas.toDataURL('image/png');
+    qrDownloaded = true;
+    btnWhatsapp.disabled = false;
   });
 
   btnWhatsapp.addEventListener('click', async () => {
@@ -423,17 +416,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let saved = false;
     let apiMessage = '';
     try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ invitado: name, acompanante: companion })
-      });
-      saved = res.ok;
-      if (res.ok) {
-        await res.json().catch(() => ({}));
+      const { error } = await supabaseClient
+        .from('confirmaciones')
+        .insert({ invitado: name, acompanante: companion });
+      if (error) {
+        saved = false;
+        apiMessage = error.code === '23505'
+          ? 'Ya existe una confirmación para este nombre. Verifica que esté bien escrito.'
+          : (error.message || 'No se pudo guardar.');
       } else {
-        const data = await res.json().catch(() => ({}));
-        apiMessage = data.error || '';
+        saved = true;
       }
     } catch (e) {
       saved = false;
@@ -441,9 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let message = `¡Hola! Confirmo mi asistencia a los XV años de ${QUINCEANERA_NAME}.\nNombre: ${name}`;
     if (companion) message += `\nAcompañante: ${companion}`;
-    if (sendQrToWhatsApp()) {
-      message += `\nTe adjunto mi QR de acceso (archivo "qr-asistencia.png").`;
-    }
+    message += `\nTe adjunto mi QR de acceso (archivo "qr-asistencia.png").`;
 
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
 

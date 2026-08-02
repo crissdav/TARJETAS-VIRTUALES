@@ -173,11 +173,20 @@
       </div>
 
       <div class="hero-parents glass">
-        <span>Invitan</span>
+        <span>Padres</span>
         <div class="parents-list">
           <p class="parent-name">Juan Carlos Moreno Núñez</p>
           <p class="parent-conj">y</p>
           <p class="parent-name">Mercedes Melani Alarcón Morales</p>
+        </div>
+      </div>
+
+      <div class="hero-parents glass hero-padrinos">
+        <span>Padrinos</span>
+        <div class="parents-list">
+          <p class="parent-name">Karyn Lisette Moreno Núñez</p>
+          <p class="parent-conj">y</p>
+          <p class="parent-name">Juan José Vega Polleri</p>
         </div>
       </div>
     </div>
@@ -301,26 +310,6 @@
   </div>
 </section>
 
-<!-- ============ GALERÍA — MOMENTOS ============ -->
-<section class="gallery">
-  <div class="container">
-    <span class="eyebrow reveal">Recuerdos</span>
-    <h2 class="section-title reveal">Momentos</h2>
-    <div class="section-divider reveal"></div>
-    <p class="section-sub reveal">Los instantes que fueron escribiendo este cuento</p>
-
-    <div class="gallery-grid">
-      <!-- Reemplaza cada photo-placeholder por: <img src="tu-foto.jpg" alt="..."> -->
-      <div class="gallery-item g-tall reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#B0D4E8,#7EC8E3)"><span class="ph-icon">👸</span><span class="ph-label">Tu foto aquí</span></div></div>
-      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#C9D6E8,#B0D4E8)"><span class="ph-icon">✨</span><span class="ph-label">Tu foto aquí</span></div></div>
-      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#1B3A6B,#0B1E3D)"><span class="ph-icon">👑</span><span class="ph-label">Tu foto aquí</span></div></div>
-      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#7EC8E3,#C9D6E8)"><span class="ph-icon">🩰</span><span class="ph-label">Tu foto aquí</span></div></div>
-      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#0B1E3D,#1B3A6B)"><span class="ph-icon">🌙</span><span class="ph-label">Tu foto aquí</span></div></div>
-      <div class="gallery-item reveal"><div class="photo-placeholder" style="background:linear-gradient(135deg,#B0D4E8,#C9D6E8)"><span class="ph-icon">💫</span><span class="ph-label">Tu foto aquí</span></div></div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ DRESSCODE ============ -->
 <section class="dresscode">
   <img src="cinderella_5.png" alt="" class="dress-cinderella" aria-hidden="true">
@@ -403,14 +392,14 @@
           <span class="rsvp-field-label">Nombre de tu acompañante <span class="opt">(opcional)</span></span>
           <input type="text" id="guestCompanion" placeholder="Escribe aquí el nombre">
         </label>
-        <button type="button" class="btn-whatsapp" id="btnWhatsapp">
-          Confirmar por WhatsApp
-        </button>
         <div class="rsvp-qr" id="rsvpQr" hidden>
-          <p class="rsvp-qr-hint">Tu código QR de acceso · muéstralo en la entrada</p>
+          <p class="rsvp-qr-hint">Tu código QR de acceso · descárgalo para confirmar y muéstralo en la entrada</p>
           <canvas id="rsvpQrCanvas" aria-hidden="true"></canvas>
           <a class="rsvp-qr-dl" id="rsvpQrDownload" download="qr-asistencia.png">Descargar QR</a>
         </div>
+        <button type="button" class="btn-whatsapp" id="btnWhatsapp" disabled>
+          Confirmar por WhatsApp
+        </button>
       </form>
     </div>
   </div>
@@ -440,6 +429,7 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="supabase.min.js"></script>
 <script src="qrcode-generator.js"></script>
 <script src="script.js"></script>
 </body>
